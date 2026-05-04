@@ -6,7 +6,7 @@ export function Hero() {
     <section className="relative h-[600px] sm:h-[700px] overflow-hidden">
       <div className="absolute inset-0">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1768578717520-1fa85a2d8d09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
+          src="/src/app/components/figma/3 bi copy.webp"
           alt="Construção moderna da cidade"
           className="w-full h-full object-cover"
         />

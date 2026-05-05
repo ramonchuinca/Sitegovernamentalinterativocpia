@@ -22,3 +22,90 @@
 
 
 
+.scene {
+  display: grid;
+  overflow: hidden;
+  height: 500px;
+  perspective: 1000px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+}
+
+/* container 3D */
+.a3d {
+  place-self: center;
+  transform-style: preserve-3d;
+  animation: rotateY 30s linear infinite;
+}
+
+@keyframes rotateY {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* card */
+.card {
+  --w: 220px;
+  --ba: calc(360deg / var(--n));
+
+  position: absolute;
+  width: var(--w);
+  height: 260px;
+
+  border-radius: 20px;
+  padding: 20px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+
+  color: white;
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+  transform:
+    rotateY(calc(var(--i) * var(--ba)))
+    translateZ(400px);
+
+  transition: all 0.4s;
+}
+
+/* hover */
+.card:hover {
+  transform:
+    rotateY(calc(var(--i) * var(--ba)))
+    translateZ(450px)
+    scale(1.05);
+}
+
+/* ícone */
+.icon-box {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #F9EC08, #facc15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: black;
+}
+
+/* textos */
+.value {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.sub {
+  font-size: 12px;
+  opacity: 0.7;
+}

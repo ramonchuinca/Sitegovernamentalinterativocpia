@@ -35,7 +35,7 @@ export function AnimatedStats() {
       target: 24,
       suffix: '',
       label: 'Projetos em Andamento',
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-[#F9EC08] to-yellow-400'
     },
     {
       icon: Users,

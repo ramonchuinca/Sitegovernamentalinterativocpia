@@ -1,48 +1,71 @@
-import { ArrowRight, Play } from 'lucide-react';
-import { ImageWithFallback } from './ImageWithFallback';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, EffectFade, Mousewheel, Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 export function Hero() {
   return (
-    <section className="relative h-[600px] sm:h-[700px] overflow-hidden">
-      <div className="absolute inset-0">
-        <ImageWithFallback
-          src="/src/app/components/figma/3 bi copy.webp"
-          alt="Construção moderna da cidade"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/60" />
-      </div>
+    <section className="h-[600px] sm:h-[700px]">
+      <Swiper
+        direction="vertical"
+        effect="fade"
+        speed={1000}
+        loop={true}
+        autoplay={{ delay: 4000 }}
+        pagination={{ clickable: true }}
+        mousewheel={{ sensitivity: 1 }}
+        modules={[Pagination, EffectFade, Mousewheel, Autoplay]}
+        className="h-full"
+      >
+        {/* SLIDE 1 */}
+        <SwiperSlide>
+          <div className="relative h-full">
+            <img
+              src="/src/app/components/figma/3 bi copy.webp"
+              alt="obra 1"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-        <div className="max-w-3xl text-white">
-          <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
-            <span className="text-sm">✨ Transformando nossa cidade juntos</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
+
+            <div className="relative h-full flex items-center px-6 max-w-5xl">
+              <div className="text-white max-w-xl animate-fadeIn">
+                <h1 className="text-4xl sm:text-6xl mb-4 font-bold">
+                  Construindo o Futuro
+                </h1>
+                <p className="text-lg">
+                  Mais de 87 obras concluídas na cidade.
+                </p>
+              </div>
+            </div>
           </div>
+        </SwiperSlide>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight">
-            Construindo o Futuro da Nossa Cidade
-          </h1>
+        {/* SLIDE 2 */}
+        <SwiperSlide>
+          <div className="relative h-full">
+            <img
+              src="/src/app/components/figma/base mulher copy.webp"
+              alt="obra 2"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
 
-          <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
-            Mais de <strong>87 obras concluídas</strong> e <strong>24 projetos em andamento</strong>.
-            Investindo <strong>R$ 45 milhões</strong> em infraestrutura, saúde, educação e qualidade de vida para todos.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-4 bg-white text-primary rounded-lg hover:bg-white/90 transition-all shadow-lg flex items-center gap-2 group">
-              <span>Conheça as Obras</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 rounded-lg hover:bg-white/20 transition-all flex items-center gap-2">
-              <Play className="w-5 h-5" />
-              <span>Ver Vídeo</span>
-            </button>
+            <div className="relative h-full flex items-center px-6 max-w-5xl">
+              <div className="text-white max-w-xl animate-fadeIn">
+                <h1 className="text-4xl sm:text-6xl mb-4 font-bold">
+                  Investindo em Qualidade de Vida
+                </h1>
+                <p className="text-lg">
+                  Mais de R$ 45 milhões em projetos.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        </SwiperSlide>
+      </Swiper>
     </section>
   );
 }

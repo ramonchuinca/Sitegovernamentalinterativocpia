@@ -1,0 +1,105 @@
+.stats3d-wrapper {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  overflow: hidden;
+}
+/* entrada suave */
+.stats3d-wrapper {
+  transition: all 1s ease;
+}
+
+/* melhora fluidez do giro */
+.stats3d-container {
+  will-change: transform;
+}
+
+.stats3d-scene {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.stats3d-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s linear;
+}
+
+/* cada item */
+.item {
+  position: absolute;
+  width: 200px;
+  height: 240px;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+
+/* estado inicial */
+.item {
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(60px) scale(0.8);
+  transition: all 0.8s ease;
+}
+
+/* entrada em sequência */
+.item.enter {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0) scale(1);
+}
+
+/* card */
+.card {
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  padding: 20px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+
+  color: white;
+  text-align: center;
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ícone */
+.icon-box {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  background: linear-gradient(135deg, #F9EC08, #facc15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: black;
+}
+
+/* textos */
+.card h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 14px;
+}
+
+.card span {
+  font-size: 12px;
+  opacity: 0.7;
+}

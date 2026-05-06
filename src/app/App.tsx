@@ -1,5 +1,6 @@
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+// import { Stats3D } from './components/Stats3D';
 import { Stats } from './components/Stats';
 import { Impact } from './components/Impact';
 import { ImpactBanner } from './components/ImpactBanner';
@@ -23,6 +24,7 @@ export default function App() {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
+      {/* <Stats3D /> */}
       <Stats />
       <Impact />
 

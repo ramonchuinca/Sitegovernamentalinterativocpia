@@ -1,116 +1,173 @@
-import { TrendingUp, CheckCircle, Clock, DollarSign } from 'lucide-react';
+import { Hospital, Plane, Route, Building2 } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+import { Autoplay, FreeMode } from 'swiper/modules';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
 
 export function Stats() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }).map(() => ({
+        left: Math.random() * 100,
+        duration: 5 + Math.random() * 10,
+      })),
+    []
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
     {
-      icon: Clock,
-      label: 'Milhões',
-      value: '12',
-      subtitle: 'Hospital de Retaguarda',
-      color: 'from-[#F9EC08] to-yellow-400'
+      icon: Hospital,
+      title: 'R$ 12 milhões',
+      description: 'Hospital de Retaguarda',
+      color: 'from-[#F9EC08] to-yello-700'
     },
     {
-      icon: CheckCircle,
-      label: 'Obras Concluídas',
-      value: '87',
-      subtitle: 'Desde 2024',
-      color: 'from-green-500 to-emerald-500'
+      icon: Plane,
+      title: 'R$ 30 milhões',
+      description: 'Aeroporto de Cacoal',
+      color: 'from-[#38A240] to-green-700'
     },
     {
-      icon: TrendingUp,
-      label: 'Progresso Médio',
-      value: '68%',
-      subtitle: 'Das obras atuais',
-      color: 'from-[#29367A] to-blue-400'
+      icon: Route,
+      title: 'R$ 310 milhões',
+      description: 'Estrada RO-370',
+      color: 'from-[#29367A] to-blue-600'
     },
     {
-      icon: DollarSign,
-      label: 'Investimento',
-      value: 'R$ 45M',
-      subtitle: 'Em desenvolvimento',
-      color: 'from-gray-400 to-gray-600'
+      icon: Route,
+      title: 'R$ 8 milhões',
+      description: 'Ponte RO-459',
+      color: 'from-[#D0D0D0] to-gray-500'
     },
     {
-      icon: Clock,
-      label: 'Em Andamento',
-      value: '24',
-      subtitle: 'Projetos ativos',
-      color: 'from-[#F9EC08] to-yellow-400'
+      icon: Building2,
+      title: 'R$ 3 milhões',
+      description: 'Praça do Abobrão',
+      color: 'from-[#38A240] to-green-500'
     },
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section ref={ref} className="py-32 relative overflow-hidden">
 
-      {/* 🔥 BACKGROUND */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617]" />
-
-      {/* efeito blur */}
-      <div className="absolute w-[400px] h-[400px] bg-yellow-400/20 blur-3xl rounded-full top-10 left-10" />
-      <div className="absolute w-[300px] h-[300px] bg-blue-500/20 blur-3xl rounded-full bottom-10 right-10" />
-
-      <div className="relative max-w-6xl mx-auto">
-
-        <Swiper
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={'auto'}
-          spaceBetween={30}
-
-          // 🔥 AUTOPLAY
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
+      {/* 🌌 partículas */}
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className="particle"
+          style={{
+            left: `${p.left}%`,
+            animationDuration: `${p.duration}s`
           }}
+        />
+      ))}
 
-          coverflowEffect={{
-            rotate: 30,
-            stretch: 0,
-            depth: 120,
-            modifier: 1,
-            slideShadows: true,
-          }}
+      {/* 🔥 background azul */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f1a3d] via-[#29367A] to-[#1e2a5a]" />
 
-          pagination={{ clickable: true }}
-          modules={[EffectCoverflow, Pagination, Autoplay]}
-        >
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
+      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-10 left-10" />
+      <div className="absolute w-[400px] h-[400px] bg-blue-400/20 blur-[120px] rounded-full bottom-10 right-10" />
 
-            return (
-              <SwiperSlide key={index} className="!w-[260px]">
-                <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-6 text-center transition-all duration-500 hover:scale-105">
+      <div className="relative max-w-7xl mx-auto z-10">
 
-                  {/* ÍCONE */}
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${stat.color} mx-auto mb-4 flex items-center justify-center shadow-lg`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
+        <div className="mask-fade">
 
-                  <div className="text-3xl font-bold mb-1">
-                    {stat.value}
-                  </div>
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={40}
+            loop={true}
+            freeMode={true}
+            speed={9000}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            modules={[Autoplay, FreeMode]}
+          >
+            {[...stats, ...stats].map((stat, index) => {
+              const Icon = stat.icon;
 
-                  <div className="text-sm mb-1">
-                    {stat.label}
-                  </div>
+              return (
+                <SwiperSlide key={index} className="!w-[350px]">
 
-                  <p className="text-xs text-gray-600">
-                    {stat.subtitle}
-                  </p>
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+                  <TiltCard visible={visible}>
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center shadow-2xl cursor-pointer transition-all duration-300 hover:shadow-blue-500/40 hover:-translate-y-2">
 
+                      {/* Ícone */}
+                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${stat.color} mx-auto mb-4 flex items-center justify-center`}>
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+
+                      {/* Valor */}
+                      <div className="text-2xl font-bold text-white mb-2">
+                        {stat.title}
+                      </div>
+
+                      {/* Descrição */}
+                      <p className="text-sm text-white/70">
+                        {stat.description}
+                      </p>
+
+                    </div>
+                  </TiltCard>
+
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+
+        </div>
       </div>
     </section>
+  );
+}
+
+function TiltCard({ children, visible }: any) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleMove = (e: any) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = -(y / rect.height - 0.5) * 15;
+    const rotateY = (x / rect.width - 0.5) * 15;
+
+    ref.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  };
+
+  const reset = () => {
+    if (!ref.current) return;
+    ref.current.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={reset}
+      className={`transition-all duration-500 will-change-transform ${
+        visible ? 'animate-cinematic' : 'opacity-0'
+      }`}
+    >
+      {children}
+    </div>
   );
 }

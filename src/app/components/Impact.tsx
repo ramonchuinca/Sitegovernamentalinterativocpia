@@ -19,7 +19,7 @@ export function Impact() {
     {
       icon: Users,
       number: '20+',
-      label: 'O GOVRO JÁ ENTREGOU MAIS DE:',
+      label: 'O GOVRO JÁ ENTREGOU MAIS DE: 20',
       description: 'PONTES DE CONCRETO',
       image: '/src/app/components/figma/02.webp',
       color: 'from-blue-500 to-cyan-500'
@@ -188,124 +188,150 @@ export function Impact() {
 
           </div>
 
-          {/* CARDS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+     {/* CARDS */}
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-            {impacts.map((impact) => {
+  {impacts.map((impact, index) => {
 
-              const Icon = impact.icon
+    const Icon = impact.icon
 
-              return (
+    return (
 
-                <div
-                  key={impact.label}
-                  className="
-                    group
-                    bg-white
-                    rounded-2xl
-                    p-6
-                    shadow-lg
-                    border
-                    border-border
-                    transition-all
-                    duration-500
-                    hover:-translate-y-2
-                    hover:shadow-2xl
-                    hover:scale-[1.02]
-                    cursor-pointer
-                  "
-                >
+      <div
+        key={impact.label}
+        className="
+          group
+          bg-white
+          rounded-3xl
+          overflow-hidden
+          shadow-lg
+          border
+          border-border
+          transition-all
+          duration-500
+          hover:-translate-y-2
+          hover:shadow-2xl
+          hover:scale-[1.02]
+          cursor-pointer
+        "
+      >
 
-                  {/* IMAGEM DO CARD */}
-                  <div className="relative mb-5 overflow-hidden rounded-2xl h-40 group/image">
+        {/* IMAGEM DO CARD */}
+        <div className="relative overflow-hidden h-52 bg-black">
 
-                    <img
-                      src={impact.image}
-                      alt={impact.label}
-                      className="
-                        w-full
-                        h-full
-                        object-cover
-                        transition-transform
-                        duration-700
-                        group-hover/image:scale-110
-                      "
-                    />
+          <BlurFade
+            delay={0.15 + index * 0.1}
+            inView
+            className="w-full h-full"
+          >
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <img
+              src={impact.image}
+              alt={impact.label}
+              className="
+                w-full
+                h-full
+                object-contain
+                object-center
+                transition-transform
+                duration-700
+                group-hover:scale-105
+              "
+            />
 
-                  </div>
+          </BlurFade>
 
-                  {/* ÍCONE */}
-                  <div
-                    className={`
-                      w-14
-                      h-14
-                      rounded-xl
-                      bg-gradient-to-br
-                      ${impact.color}
-                      flex
-                      items-center
-                      justify-center
-                      mb-4
-                      shadow-lg
-                      group-hover:scale-110
-                      group-hover:rotate-3
-                      transition-all
-                      duration-500
-                    `}
-                  >
+          {/* OVERLAY */}
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-t
+              from-black/60
+              via-black/10
+              to-transparent
+            "
+          />
 
-                    <Icon className="w-7 h-7 text-white" />
-
-                  </div>
-
-                  {/* NÚMERO */}
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="character"
-                    className="
-                      text-4xl
-                      font-bold
-                      mb-2
-                      tracking-tight
-                    "
-                  >
-                    {impact.number}
-                  </TextAnimate>
-
-                  {/* TÍTULO */}
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="word"
-                    className="
-                      text-base
-                      font-semibold
-                      mb-1
-                    "
-                  >
-                    {impact.label}
-                  </TextAnimate>
-
-                  {/* DESCRIÇÃO */}
-                  <TextAnimate
-                    animation="blurInUp"
-                    by="word"
-                    className="
-                      text-sm
-                      text-muted-foreground
-                      leading-relaxed
-                    "
-                  >
-                    {impact.description}
-                  </TextAnimate>
-
-                </div>
-
-              )
-            })}
-
+          {/* ÍCONE SOBRE IMAGEM */}
+          <div
+            className={`
+              absolute
+              bottom-3
+              left-3
+              w-10
+              h-10
+              rounded-xl
+              bg-gradient-to-br
+              ${impact.color}
+              flex
+              items-center
+              justify-center
+              shadow-lg
+              z-20
+              group-hover:scale-110
+              group-hover:rotate-3
+              transition-all
+              duration-500
+            `}
+          >
+            <Icon className="w-6 h-6 text-white" />
           </div>
+
+        </div>
+
+        {/* CONTEÚDO */}
+        <div className="p-6">
+
+          {/* NÚMERO */}
+          <TextAnimate
+            animation="blurInUp"
+            by="character"
+            className="
+              text-4xl
+              font-bold
+              mb-2
+              tracking-tight
+            "
+          >
+            {impact.number}
+          </TextAnimate>
+
+          {/* TÍTULO */}
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            className="
+              text-base
+              font-semibold
+              mb-2
+              leading-snug
+            "
+          >
+            {impact.label}
+          </TextAnimate>
+
+          {/* DESCRIÇÃO */}
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            className="
+              text-sm
+              text-muted-foreground
+              leading-relaxed
+            "
+          >
+            {impact.description}
+          </TextAnimate>
+
+        </div>
+
+      </div>
+
+    )
+  })}
+
+</div>
 
         </div>
 

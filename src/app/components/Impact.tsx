@@ -30,7 +30,7 @@ export function Impact() {
       number: '30+',
       label: 'Escolas Modernizadas',
       description: 'Melhor educação para todos',
-      image: '/src/app/components/figma/escola.webp',
+      image: '/src/app/components/figma/03.webp',
       color: 'from-purple-500 to-indigo-500'
     },
 
@@ -39,7 +39,7 @@ export function Impact() {
       number: '100%',
       label: 'Sustentabilidade',
       description: 'Projetos eco-friendly',
-      image: '/src/app/components/figma/sustentabilidade.webp',
+      image: '/src/app/components/figma/04.webp',
       color: 'from-green-500 to-emerald-500'
     }
   ]
@@ -188,18 +188,18 @@ export function Impact() {
 
           </div>
 
-     {/* CARDS */}
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-  {impacts.map((impact, index) => {
+            {impacts.map((impact, index) => {
 
-    const Icon = impact.icon
+              const Icon = impact.icon
 
-    return (
+              return (
 
-      <div
-        key={impact.label}
-        className="
+                <div
+                  key={impact.label}
+                  className="
           group
           bg-white
           rounded-3xl
@@ -214,21 +214,21 @@ export function Impact() {
           hover:scale-[1.02]
           cursor-pointer
         "
-      >
+                >
 
-        {/* IMAGEM DO CARD */}
-        <div className="relative overflow-hidden h-52 bg-black">
+                  {/* IMAGEM DO CARD */}
+                  <div className="relative overflow-hidden h-52 bg-black">
 
-          <BlurFade
-            delay={0.15 + index * 0.1}
-            inView
-            className="w-full h-full"
-          >
+                    <BlurFade
+                      delay={0.15 + index * 0.1}
+                      inView
+                      className="w-full h-full"
+                    >
 
-            <img
-              src={impact.image}
-              alt={impact.label}
-              className="
+                      <img
+                        src={impact.image}
+                        alt={impact.label}
+                        className="
                 w-full
                 h-full
                 object-contain
@@ -237,13 +237,13 @@ export function Impact() {
                 duration-700
                 group-hover:scale-105
               "
-            />
+                      />
 
-          </BlurFade>
+                    </BlurFade>
 
-          {/* OVERLAY */}
-          <div
-            className="
+                    {/* OVERLAY */}
+                    <div
+                      className="
               absolute
               inset-0
               bg-gradient-to-t
@@ -251,11 +251,11 @@ export function Impact() {
               via-black/10
               to-transparent
             "
-          />
+                    />
 
-          {/* ÍCONE SOBRE IMAGEM */}
-          <div
-            className={`
+                    {/* ÍCONE SOBRE IMAGEM */}
+                    <div
+                      className={`
               absolute
               bottom-3
               left-3
@@ -274,64 +274,64 @@ export function Impact() {
               transition-all
               duration-500
             `}
-          >
-            <Icon className="w-6 h-6 text-white" />
-          </div>
+                    >
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
 
-        </div>
+                  </div>
 
-        {/* CONTEÚDO */}
-        <div className="p-6">
+                  {/* CONTEÚDO */}
+                  <div className="p-6">
 
-          {/* NÚMERO */}
-          <TextAnimate
-            animation="blurInUp"
-            by="character"
-            className="
+                    {/* NÚMERO */}
+                    <TextAnimate
+                      animation="blurInUp"
+                      by="character"
+                      className="
               text-4xl
               font-bold
               mb-2
               tracking-tight
             "
-          >
-            {impact.number}
-          </TextAnimate>
+                    >
+                      {impact.number}
+                    </TextAnimate>
 
-          {/* TÍTULO */}
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            className="
+                    {/* TÍTULO */}
+                    <TextAnimate
+                      animation="blurInUp"
+                      by="word"
+                      className="
               text-base
               font-semibold
               mb-2
               leading-snug
             "
-          >
-            {impact.label}
-          </TextAnimate>
+                    >
+                      {impact.label}
+                    </TextAnimate>
 
-          {/* DESCRIÇÃO */}
-          <TextAnimate
-            animation="blurInUp"
-            by="word"
-            className="
+                    {/* DESCRIÇÃO */}
+                    <TextAnimate
+                      animation="blurInUp"
+                      by="word"
+                      className="
               text-sm
               text-muted-foreground
               leading-relaxed
             "
-          >
-            {impact.description}
-          </TextAnimate>
+                    >
+                      {impact.description}
+                    </TextAnimate>
 
-        </div>
+                  </div>
 
-      </div>
+                </div>
 
-    )
-  })}
+              )
+            })}
 
-</div>
+          </div>
 
         </div>
 

@@ -13,15 +13,17 @@ export function Impact() {
       label: 'DE CARA NOVA',
       description: 'DE CARA NOVA',
       image: '/src/app/components/figma/01.webp',
+      link: 'https://www.instagram.com/p/DV9B3rdkRRb/?hl=bg',
       color: 'from-red-500 to-pink-500'
     },
 
     {
       icon: Users,
       number: '20+',
-      label: 'O GOVRO JÁ ENTREGOU MAIS DE: 20',
+      label: 'O GOVERNO JÁ ENTREGOU MAIS DE: 20',
       description: 'PONTES DE CONCRETO',
       image: '/src/app/components/figma/02.webp',
+      link: 'https://www.instagram.com/p/DU_jw31gYuW/?hl=bg&img_index=1',
       color: 'from-blue-500 to-cyan-500'
     },
 
@@ -31,6 +33,7 @@ export function Impact() {
       label: 'Escolas Modernizadas',
       description: 'Melhor educação para todos',
       image: '/src/app/components/figma/03.webp',
+      link: 'https://www.instagram.com/p/DSK9OTE4QK/?hl=bg&img_index=1',
       color: 'from-purple-500 to-indigo-500'
     },
 
@@ -40,6 +43,7 @@ export function Impact() {
       label: 'Sustentabilidade',
       description: 'Projetos eco-friendly',
       image: '/src/app/components/figma/04.webp',
+      link: 'https://www.instagram.com/p/DSNF1BEZn0/?hl=bg&img_index=1',
       color: 'from-green-500 to-emerald-500'
     }
   ]
@@ -60,12 +64,12 @@ export function Impact() {
               animation="blurInUp"
               by="word"
               className="
-    text-sm
-    text-center
-    justify-center
-    flex-wrap
-    leading-relaxed
-  "
+                text-sm
+                text-center
+                justify-center
+                flex-wrap
+                leading-relaxed
+              "
             >
               Impacto Real na Comunidade
             </TextAnimate>
@@ -75,7 +79,7 @@ export function Impact() {
           {/* TÍTULO */}
           <TextAnimate
             animation="blurInUp"
-            by="character"
+            by="word"
             className="
               text-3xl
               sm:text-4xl
@@ -84,6 +88,10 @@ export function Impact() {
               mb-4
               tracking-tight
               justify-center
+              text-center
+              leading-tight
+              max-w-4xl
+              mx-auto
             "
           >
             Transformando Vidas Todos os Dias
@@ -100,6 +108,7 @@ export function Impact() {
               mx-auto
               leading-relaxed
               justify-center
+              text-center
             "
           >
             Cada obra representa uma melhoria concreta na qualidade
@@ -130,12 +139,12 @@ export function Impact() {
             <BlurFade delay={0.25} inView className="h-full">
 
               <ImageWithFallback
-                src="/src/app/components/figma/THUMBNAIL SITE copy.webp"
+                src="/src/app/components/figma/THUMB GRANDE 3BI copy.webp"
                 alt="Comunidade feliz no parque"
                 className="
                   w-full
                   h-full
-                  object-contain
+                  object-cover
                   object-center
                   select-none
                   transition-transform
@@ -157,13 +166,14 @@ export function Impact() {
 
               <TextAnimate
                 animation="blurInUp"
-                by="character"
+                by="word"
                 className="
                   text-lg
                   sm:text-xl
                   font-semibold
                   mb-1
                   text-white
+                  leading-tight
                 "
               >
                 Praça da Matriz - Revitalizada
@@ -197,23 +207,27 @@ export function Impact() {
 
               return (
 
-                <div
+                <a
                   key={impact.label}
+                  href={impact.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
-          group
-          bg-white
-          rounded-3xl
-          overflow-hidden
-          shadow-lg
-          border
-          border-border
-          transition-all
-          duration-500
-          hover:-translate-y-2
-          hover:shadow-2xl
-          hover:scale-[1.02]
-          cursor-pointer
-        "
+                    block
+                    group
+                    bg-white
+                    rounded-3xl
+                    overflow-hidden
+                    shadow-lg
+                    border
+                    border-border
+                    transition-all
+                    duration-500
+                    hover:-translate-y-2
+                    hover:shadow-2xl
+                    hover:scale-[1.02]
+                    cursor-pointer
+                  "
                 >
 
                   {/* IMAGEM DO CARD */}
@@ -229,14 +243,14 @@ export function Impact() {
                         src={impact.image}
                         alt={impact.label}
                         className="
-                w-full
-                h-full
-                object-contain
-                object-center
-                transition-transform
-                duration-700
-                group-hover:scale-105
-              "
+                          w-full
+                          h-full
+                          object-cover
+                          object-center
+                          transition-transform
+                          duration-700
+                          group-hover:scale-105
+                        "
                       />
 
                     </BlurFade>
@@ -244,36 +258,36 @@ export function Impact() {
                     {/* OVERLAY */}
                     <div
                       className="
-              absolute
-              inset-0
-              bg-gradient-to-t
-              from-black/60
-              via-black/10
-              to-transparent
-            "
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-black/60
+                        via-black/10
+                        to-transparent
+                      "
                     />
 
                     {/* ÍCONE SOBRE IMAGEM */}
                     <div
                       className={`
-              absolute
-              bottom-3
-              left-3
-              w-10
-              h-10
-              rounded-xl
-              bg-gradient-to-br
-              ${impact.color}
-              flex
-              items-center
-              justify-center
-              shadow-lg
-              z-20
-              group-hover:scale-110
-              group-hover:rotate-3
-              transition-all
-              duration-500
-            `}
+                        absolute
+                        bottom-3
+                        left-3
+                        w-10
+                        h-10
+                        rounded-xl
+                        bg-gradient-to-br
+                        ${impact.color}
+                        flex
+                        items-center
+                        justify-center
+                        shadow-lg
+                        z-20
+                        group-hover:scale-110
+                        group-hover:rotate-3
+                        transition-all
+                        duration-500
+                      `}
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </div>
@@ -288,11 +302,12 @@ export function Impact() {
                       animation="blurInUp"
                       by="character"
                       className="
-              text-4xl
-              font-bold
-              mb-2
-              tracking-tight
-            "
+                        text-4xl
+                        font-bold
+                        mb-2
+                        tracking-tight
+                        leading-none
+                      "
                     >
                       {impact.number}
                     </TextAnimate>
@@ -302,11 +317,11 @@ export function Impact() {
                       animation="blurInUp"
                       by="word"
                       className="
-              text-base
-              font-semibold
-              mb-2
-              leading-snug
-            "
+                        text-base
+                        font-semibold
+                        mb-2
+                        leading-snug
+                      "
                     >
                       {impact.label}
                     </TextAnimate>
@@ -316,17 +331,17 @@ export function Impact() {
                       animation="blurInUp"
                       by="word"
                       className="
-              text-sm
-              text-muted-foreground
-              leading-relaxed
-            "
+                        text-sm
+                        text-muted-foreground
+                        leading-relaxed
+                      "
                     >
                       {impact.description}
                     </TextAnimate>
 
                   </div>
 
-                </div>
+                </a>
 
               )
             })}

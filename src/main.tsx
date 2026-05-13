@@ -1,7 +1,12 @@
+import { createRoot } from "react-dom/client";
+import { ParallaxProvider } from "react-scroll-parallax";
 
-  import { createRoot } from "react-dom/client";
-  import App from "./app/App.tsx";
-  import "./styles/index.css";
+import App from "./app/App.tsx";
 
-  createRoot(document.getElementById("root")!).render(<App />);
-  
+import "./styles/index.css";
+
+createRoot(document.getElementById("root")!).render(
+  <ParallaxProvider>
+    <App />
+  </ParallaxProvider>
+);

@@ -29,14 +29,14 @@ export default function App() {
       <Impact />
 
       <ImpactBanner
-        image="https://images.unsplash.com/photo-1690306816872-91063f6de36b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
-        title="Saúde de Qualidade Para Todos"
+        image="/src/app/components/figma/foto-mulher-1.webp"
+        title="Quando a voz não sai,o sinal fala"
         subtitle="Investindo em infraestrutura médica moderna e profissionais capacitados para cuidar da nossa gente"
         overlay="gradient"
         stats={[
-          { label: 'UBS Reformadas', value: '15' },
-          { label: 'Novos Leitos', value: '200' },
-          { label: 'Atendimentos/Mês', value: '45mil' }
+          // { label: 'UBS Reformadas', value: '15' },
+          // { label: 'Novos Leitos', value: '200' },
+          { label: 'SAIBA MAIS', value: '' }
         ]}
       />
 

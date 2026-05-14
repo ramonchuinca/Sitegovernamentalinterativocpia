@@ -1,13 +1,13 @@
 import { ImageWithFallback } from './ImageWithFallback';
 import { Quote } from 'lucide-react';
-
-// ✅ ADICIONADO
 import { Parallax } from 'react-scroll-parallax';
+import { ReactNode } from 'react';
 
 interface ImpactBannerProps {
-  image: string;
-  title: string;
-  subtitle: string;
+  image?: string;
+  background?: ReactNode;
+  title: ReactNode;
+  subtitle: ReactNode;
   quote?: string;
   author?: string;
   stats?: Array<{ label: string; value: string }>;
@@ -17,6 +17,7 @@ interface ImpactBannerProps {
 
 export function ImpactBanner({
   image,
+  background,
   title,
   subtitle,
   quote,
@@ -35,26 +36,31 @@ export function ImpactBanner({
   return (
     <section className="relative h-[500px] lg:h-[600px] overflow-hidden">
 
-      {/* ✅ BACKGROUND */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0">
 
-        {/* ✅ PARALLAX */}
+        {/* PARALLAX */}
         <Parallax speed={-30}>
 
-          {/* ✅ IMAGEM */}
-          <ImageWithFallback
-            src={image}
-            alt={title}
-            className="w-full h-[700px] object-cover scale-110"
-          />
+          {background ? (
+            <div className="relative w-full h-[700px] scale-110">
+              {background}
+            </div>
+          ) : (
+            <ImageWithFallback
+              src={image || ''}
+              alt="banner"
+              className="w-full h-[700px] object-cover scale-110"
+            />
+          )}
 
         </Parallax>
 
-        {/* ✅ OVERLAY */}
+        {/* OVERLAY */}
         <div className={`absolute inset-0 ${overlayClasses[overlay]}`} />
       </div>
 
-      {/* ✅ CONTEÚDO */}
+      {/* CONTEÚDO */}
       <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
 
         <div
@@ -69,17 +75,17 @@ export function ImpactBanner({
             <Quote className="w-12 h-12 mb-4 text-white/40" />
           )}
 
-          {/* ✅ TÍTULO */}
+          {/* TÍTULO */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 leading-tight">
             {title}
           </h2>
 
-          {/* ✅ SUBTÍTULO */}
-          <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
+          {/* SUBTÍTULO */}
+          <div className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
             {subtitle}
-          </p>
+          </div>
 
-          {/* ✅ QUOTE */}
+          {/* QUOTE */}
           {quote && (
             <div className="border-l-4 border-white/50 pl-6 mb-8">
 
@@ -96,7 +102,7 @@ export function ImpactBanner({
             </div>
           )}
 
-          {/* ✅ STATS */}
+          {/* STATS */}
           {stats && stats.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
 

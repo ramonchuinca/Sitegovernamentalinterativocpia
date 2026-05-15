@@ -10,7 +10,11 @@ interface ImpactBannerProps {
   subtitle: ReactNode;
   quote?: string;
   author?: string;
-  stats?: Array<{ label: string; value: string }>;
+  stats?: Array<{
+    label: string;
+    value: string;
+    link?: string;
+  }>;
   align?: 'left' | 'right';
   overlay?: 'dark' | 'light' | 'gradient';
 }
@@ -64,11 +68,10 @@ export function ImpactBanner({
       <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
 
         <div
-          className={`max-w-2xl text-white ${
-            align === 'right'
+          className={`max-w-2xl text-white ${align === 'right'
               ? 'ml-auto text-right'
               : ''
-          }`}
+            }`}
         >
 
           {quote && (
@@ -106,32 +109,50 @@ export function ImpactBanner({
           {stats && stats.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
 
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="
-                    bg-white/10
-                    backdrop-blur-sm
-                    rounded-lg
-                    p-4
-                    border
-                    border-white/20
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                  "
-                >
+              {stats.map((stat, index) => {
 
-                  <div className="text-2xl sm:text-3xl mb-1">
-                    {stat.value}
+                const content = (
+                  <div
+                    className="
+        bg-white/10
+        backdrop-blur-sm
+        rounded-lg
+        p-4
+        border
+        border-white/20
+        hover:bg-white/20
+        hover:scale-105
+        transition-all
+        duration-300
+        cursor-pointer
+        text-center
+      "
+                  >
+                    <div className="text-2xl sm:text-3xl mb-1">
+                      {stat.value}
+                    </div>
+
+                    <div className="text-sm text-white/80">
+                      {stat.label}
+                    </div>
                   </div>
+                );
 
-                  <div className="text-sm text-white/80">
-                    {stat.label}
+                return stat.link ? (
+                  <a
+                    key={index}
+                    href={stat.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={index}>
+                    {content}
                   </div>
-
-                </div>
-              ))}
+                );
+              })}
 
             </div>
           )}

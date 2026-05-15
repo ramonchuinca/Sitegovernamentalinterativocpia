@@ -98,8 +98,12 @@ export default function App() {
     </TextAnimate>
   }
   stats={[
-    { label: 'SAIBA MAIS', value: '' }
-  ]}
+  {
+    label: 'SAIBA MAIS',
+    value: '',
+    link: 'https://rondoniasocial.ro.gov.br/mulherprotegida/'
+  }
+]}
 />
 
       <VideoShowcase />

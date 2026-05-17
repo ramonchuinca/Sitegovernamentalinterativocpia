@@ -18,6 +18,7 @@ import { SocialFeed } from './components/SocialFeed';
 import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
 import { FloatingCTA } from './components/FloatingCTA';
+import { TextAnimate } from './components/magicui/text-animate';
 
 export default function App() {
   return (
@@ -28,17 +29,82 @@ export default function App() {
       <Stats />
       <Impact />
 
-      <ImpactBanner
-        image="/src/app/components/figma/foto-mulher-1.webp"
-        title="Quando a voz não sai,o sinal fala"
-        subtitle="Investindo em infraestrutura médica moderna e profissionais capacitados para cuidar da nossa gente"
-        overlay="gradient"
-        stats={[
-          // { label: 'UBS Reformadas', value: '15' },
-          // { label: 'Novos Leitos', value: '200' },
-          { label: 'SAIBA MAIS', value: '' }
-        ]}
+    <ImpactBanner
+  background={
+    <picture>
+
+      {/* MOBILE */}
+      <source
+        media="(max-width: 600px)"
+        srcSet="/src/app/components/figma/mulher_vert-2.webp"
       />
+
+      {/* DESKTOP */}
+      <source
+        media="(min-width: 601px)"
+        srcSet="/src/app/components/figma/foto-mulher-1.webp"
+      />
+
+      {/* DEFAULT */}
+      <img
+        src="/src/app/components/figma/base mulher copy.webp"
+        alt="obra 2"
+        className="
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          object-center
+        "
+      />
+
+    </picture>
+  }
+  title={
+    <TextAnimate
+      animation="blurInUp"
+      by="word"
+      className="
+        text-3xl
+        sm:text-4xl
+        lg:text-5xl
+        font-bold
+        mb-4
+        text-center
+        leading-tight
+        max-w-4xl
+        mx-auto
+      "
+    >
+      {'Quando a voz não sai, o sinal fala'}
+    </TextAnimate>
+  }
+  subtitle={
+    <TextAnimate
+      animation="fadeIn"
+      by="word"
+      delay={0.3}
+      className="
+        text-lg
+        sm:text-xl
+        text-white/90
+        text-center
+        max-w-2xl
+        mx-auto
+      "
+    >
+      {'Investindo em infraestrutura médica moderna e profissionais capacitados para cuidar da nossa gente'}
+    </TextAnimate>
+  }
+  stats={[
+  {
+    label: 'SAIBA MAIS',
+    value: '',
+    link: 'https://rondoniasocial.ro.gov.br/mulherprotegida/'
+  }
+]}
+/>
 
       <VideoShowcase />
 

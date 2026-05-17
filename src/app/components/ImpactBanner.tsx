@@ -1,22 +1,27 @@
 import { ImageWithFallback } from './ImageWithFallback';
 import { Quote } from 'lucide-react';
-
-// ✅ ADICIONADO
 import { Parallax } from 'react-scroll-parallax';
+import { ReactNode } from 'react';
 
 interface ImpactBannerProps {
-  image: string;
-  title: string;
-  subtitle: string;
+  image?: string;
+  background?: ReactNode;
+  title: ReactNode;
+  subtitle: ReactNode;
   quote?: string;
   author?: string;
-  stats?: Array<{ label: string; value: string }>;
+  stats?: Array<{
+    label: string;
+    value: string;
+    link?: string;
+  }>;
   align?: 'left' | 'right';
   overlay?: 'dark' | 'light' | 'gradient';
 }
 
 export function ImpactBanner({
   image,
+  background,
   title,
   subtitle,
   quote,
@@ -35,51 +40,55 @@ export function ImpactBanner({
   return (
     <section className="relative h-[500px] lg:h-[600px] overflow-hidden">
 
-      {/* ✅ BACKGROUND */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0">
 
-        {/* ✅ PARALLAX */}
+        {/* PARALLAX */}
         <Parallax speed={-30}>
 
-          {/* ✅ IMAGEM */}
-          <ImageWithFallback
-            src={image}
-            alt={title}
-            className="w-full h-[700px] object-cover scale-110"
-          />
+          {background ? (
+            <div className="relative w-full h-[700px] scale-110">
+              {background}
+            </div>
+          ) : (
+            <ImageWithFallback
+              src={image || ''}
+              alt="banner"
+              className="w-full h-[700px] object-cover scale-110"
+            />
+          )}
 
         </Parallax>
 
-        {/* ✅ OVERLAY */}
+        {/* OVERLAY */}
         <div className={`absolute inset-0 ${overlayClasses[overlay]}`} />
       </div>
 
-      {/* ✅ CONTEÚDO */}
+      {/* CONTEÚDO */}
       <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
 
         <div
-          className={`max-w-2xl text-white ${
-            align === 'right'
+          className={`max-w-2xl text-white ${align === 'right'
               ? 'ml-auto text-right'
               : ''
-          }`}
+            }`}
         >
 
           {quote && (
             <Quote className="w-12 h-12 mb-4 text-white/40" />
           )}
 
-          {/* ✅ TÍTULO */}
+          {/* TÍTULO */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 leading-tight">
             {title}
           </h2>
 
-          {/* ✅ SUBTÍTULO */}
-          <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
+          {/* SUBTÍTULO */}
+          <div className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
             {subtitle}
-          </p>
+          </div>
 
-          {/* ✅ QUOTE */}
+          {/* QUOTE */}
           {quote && (
             <div className="border-l-4 border-white/50 pl-6 mb-8">
 
@@ -96,36 +105,54 @@ export function ImpactBanner({
             </div>
           )}
 
-          {/* ✅ STATS */}
+          {/* STATS */}
           {stats && stats.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
 
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="
-                    bg-white/10
-                    backdrop-blur-sm
-                    rounded-lg
-                    p-4
-                    border
-                    border-white/20
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                  "
-                >
+              {stats.map((stat, index) => {
 
-                  <div className="text-2xl sm:text-3xl mb-1">
-                    {stat.value}
+                const content = (
+                  <div
+                    className="
+        bg-white/10
+        backdrop-blur-sm
+        rounded-lg
+        p-4
+        border
+        border-white/20
+        hover:bg-white/20
+        hover:scale-105
+        transition-all
+        duration-300
+        cursor-pointer
+        text-center
+      "
+                  >
+                    <div className="text-2xl sm:text-3xl mb-1">
+                      {stat.value}
+                    </div>
+
+                    <div className="text-sm text-white/80">
+                      {stat.label}
+                    </div>
                   </div>
+                );
 
-                  <div className="text-sm text-white/80">
-                    {stat.label}
+                return stat.link ? (
+                  <a
+                    key={index}
+                    href={stat.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={index}>
+                    {content}
                   </div>
-
-                </div>
-              ))}
+                );
+              })}
 
             </div>
           )}

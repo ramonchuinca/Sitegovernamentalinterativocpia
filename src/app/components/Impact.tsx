@@ -3,15 +3,17 @@ import { Heart, Users, Building2, Leaf } from 'lucide-react'
 import { ImageWithFallback } from './ImageWithFallback'
 import { TextAnimate } from './magicui/text-animate'
 import { BlurFade } from './magicui/blur-fade'
+import Tilt from 'react-parallax-tilt'
+import { motion } from 'framer-motion'
 
 export function Impact() {
 
   const impacts = [
     {
       icon: Heart,
-      number: 'RO-370',
-      label: 'DE CARA NOVA',
-      description: 'DE CARA NOVA',
+      number: 'OBRA na RO-370',
+      label: '',
+      description: '',
       image: '/src/app/components/figma/01.webp',
       link: 'https://www.instagram.com/p/DV9B3rdkRRb/?hl=bg',
       color: 'from-red-500 to-pink-500'
@@ -19,9 +21,9 @@ export function Impact() {
 
     {
       icon: Users,
-      number: '20+',
-      label: 'O GOVERNO JÁ ENTREGOU MAIS DE: 20',
-      description: 'PONTES DE CONCRETO',
+      number: '+20 Pontes entregues',
+      label: '',
+      description: '',
       image: '/src/app/components/figma/02.webp',
       link: 'https://www.instagram.com/p/DU_jw31gYuW/?hl=bg&img_index=1',
       color: 'from-blue-500 to-cyan-500'
@@ -29,9 +31,9 @@ export function Impact() {
 
     {
       icon: Building2,
-      number: '30+',
-      label: 'Escolas Modernizadas',
-      description: 'Melhor educação para todos',
+      number: 'Obras por Rondônia ',
+      label: '',
+      description: '',
       image: '/src/app/components/figma/03.webp',
       link: 'https://www.instagram.com/p/DSK9OTE4QK/?hl=bg&img_index=1',
       color: 'from-purple-500 to-indigo-500'
@@ -39,9 +41,9 @@ export function Impact() {
 
     {
       icon: Leaf,
-      number: '100%',
-      label: 'Sustentabilidade',
-      description: 'Projetos eco-friendly',
+      number: 'Praças entregues ',
+      label: '',
+      description: '',
       image: '/src/app/components/figma/04.webp',
       link: 'https://www.instagram.com/p/DSNF1BEZn0/?hl=bg&img_index=1',
       color: 'from-green-500 to-emerald-500'
@@ -94,7 +96,7 @@ export function Impact() {
               mx-auto
             "
           >
-            Transformando Vidas Todos os Dias
+            Obras que transformam vidas
           </TextAnimate>
 
           {/* SUBTÍTULO */}
@@ -111,8 +113,7 @@ export function Impact() {
               text-center
             "
           >
-            Cada obra representa uma melhoria concreta na qualidade
-            de vida dos nossos cidadãos
+            Porque temos um governo que se importa com a gente
           </TextAnimate>
 
         </div>
@@ -163,7 +164,7 @@ export function Impact() {
 
             {/* TEXTO */}
             <div className="absolute bottom-6 left-6 z-20 text-white px-2">
-
+              {/* 
               <TextAnimate
                 animation="blurInUp"
                 by="word"
@@ -192,159 +193,195 @@ export function Impact() {
               >
                 Um novo espaço moderno de convivência,
                 lazer e integração para toda a comunidade.
-              </TextAnimate>
+              </TextAnimate> */}
 
             </div>
 
           </div>
+{/* CARDS */}
+<div className="grid grid-cols-2 gap-4">
 
-          {/* CARDS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  {impacts.map((impact, index) => {
 
-            {impacts.map((impact, index) => {
+    const Icon = impact.icon
 
-              const Icon = impact.icon
+    return (
 
-              return (
+    <Tilt
+  glareEnable={true}
+  glareMaxOpacity={0.2}
+  scale={1.03}
+  tiltMaxAngleX={10}
+  tiltMaxAngleY={10}
+  perspective={1200}
+  transitionSpeed={1500}
+  className="rounded-[26px] h-full"
+>
 
-                <a
-                  key={impact.label}
-                  href={impact.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    block
-                    group
-                    bg-white
-                    rounded-3xl
-                    overflow-hidden
-                    shadow-lg
-                    border
-                    border-border
-                    transition-all
-                    duration-500
-                    hover:-translate-y-2
-                    hover:shadow-2xl
-                    hover:scale-[1.02]
-                    cursor-pointer
-                  "
-                >
+  <motion.a
+    key={impact.label}
+    href={impact.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 80, rotateX: -20 }}
+    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+    transition={{
+      duration: 0.8,
+      delay: index * 0.1
+    }}
+    viewport={{ once: true }}
+    className="
+      group
+      bg-white/95
+      rounded-[26px]
+      overflow-hidden
+      border
+      border-zinc-200
+      shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+      hover:shadow-2xl
+      transition-all
+      duration-500
+      hover:-translate-y-1
+      block
+      h-full
+      backdrop-blur-xl
+    "
+  >
 
-                  {/* IMAGEM DO CARD */}
-                  <div className="relative overflow-hidden h-52 bg-black">
+    {/* IMAGEM */}
+    <div className="relative h-[250px] overflow-hidden">
 
-                    <BlurFade
-                      delay={0.15 + index * 0.1}
-                      inView
-                      className="w-full h-full"
-                    >
+      <BlurFade
+        delay={0.15 + index * 0.1}
+        inView
+        className="w-full h-full"
+      >
 
-                      <img
-                        src={impact.image}
-                        alt={impact.label}
-                        className="
-                          w-full
-                          h-full
-                          object-cover
-                          object-center
-                          transition-transform
-                          duration-700
-                          group-hover:scale-105
-                        "
-                      />
+        <img
+          src={impact.image}
+          alt={impact.label}
+          className="
+            w-full
+            h-full
+            object-cover
+            object-top
+            transition-transform
+            duration-700
+            group-hover:scale-105
+          "
+        />
 
-                    </BlurFade>
+      </BlurFade>
 
-                    {/* OVERLAY */}
-                    <div
-                      className="
-                        absolute
-                        inset-0
-                        bg-gradient-to-t
-                        from-black/60
-                        via-black/10
-                        to-transparent
-                      "
-                    />
+      {/* OVERLAY */}
+      <div
+        className="
+          absolute
+          inset-0
+          bg-gradient-to-t
+          from-black/20
+          via-transparent
+          to-transparent
+        "
+      />
 
-                    {/* ÍCONE SOBRE IMAGEM */}
-                    <div
-                      className={`
-                        absolute
-                        bottom-3
-                        left-3
-                        w-10
-                        h-10
-                        rounded-xl
-                        bg-gradient-to-br
-                        ${impact.color}
-                        flex
-                        items-center
-                        justify-center
-                        shadow-lg
-                        z-20
-                        group-hover:scale-110
-                        group-hover:rotate-3
-                        transition-all
-                        duration-500
-                      `}
-                    >
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
+      {/* GLOW */}
+      <div
+        className="
+          absolute
+          inset-0
+          bg-white/10
+          opacity-0
+          group-hover:opacity-100
+          transition-opacity
+          duration-700
+        "
+      />
 
-                  </div>
+      {/* ÍCONE */}
+      <div
+        className={`
+          absolute
+          bottom-3
+          left-1
+          w-10
+          h-10
+          rounded-xl
+          bg-gradient-to-br
+          ${impact.color}
+          flex
+          items-center
+          justify-center
+          shadow-lg
+          z-20
+          transition-transform
+          duration-500
+          group-hover:scale-110
+          group-hover:rotate-6
+        `}
+      >
+        <Icon className="w-5 h-5 text-white" />
+      </div>
 
-                  {/* CONTEÚDO */}
-                  <div className="p-6">
+    </div>
 
-                    {/* NÚMERO */}
-                    <TextAnimate
-                      animation="blurInUp"
-                      by="character"
-                      className="
-                        text-4xl
-                        font-bold
-                        mb-2
-                        tracking-tight
-                        leading-none
-                      "
-                    >
-                      {impact.number}
-                    </TextAnimate>
+    {/* CONTEÚDO */}
+    <div className="p-4">
 
-                    {/* TÍTULO */}
-                    <TextAnimate
-                      animation="blurInUp"
-                      by="word"
-                      className="
-                        text-base
-                        font-semibold
-                        mb-2
-                        leading-snug
-                      "
-                    >
-                      {impact.label}
-                    </TextAnimate>
+      {/* NÚMERO */}
+      
+      <TextAnimate
+        animation="blurInUp"
+        by="word"
+        className="
+          text-4xl
+          font-black
+          leading-none
+          tracking-tight
+          text-zinc-900
+          mb-2
+          "
+          >
+        {impact.number}
+      </TextAnimate>
 
-                    {/* DESCRIÇÃO */}
-                    <TextAnimate
-                      animation="blurInUp"
-                      by="word"
-                      className="
-                        text-sm
-                        text-muted-foreground
-                        leading-relaxed
-                      "
-                    >
-                      {impact.description}
-                    </TextAnimate>
+      {/* TÍTULO */}
+      <TextAnimate
+        animation="blurInUp"
+        by="word"
+        className="
+          text-[13px]
+          font-bold
+          text-zinc-800
+          leading-snug
+          mb-2
+        "
+      >
+        {impact.label}
+      </TextAnimate>
 
-                  </div>
+      {/* DESCRIÇÃO */}
+      <TextAnimate
+        animation="blurInUp"
+        by="word"
+        className="
+          text-[11px]
+          text-zinc-500
+          leading-relaxed
+        "
+      >
+        {impact.description}
+      </TextAnimate>
 
-                </a>
+    </div>
 
-              )
-            })}
+  </motion.a>
+
+</Tilt>
+    )
+  })}
+
+
 
           </div>
 

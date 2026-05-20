@@ -70,13 +70,14 @@ export function Hero() {
                 h-full
                 flex
                 items-center
+                justify-end
                 px-5
                 sm:px-10
                 lg:px-20
               "
             >
 
-              <div className="text-white max-w-2xl">
+              <div className="text-white max-w-2xl text-right">
 
                 <h1
                   className="
@@ -88,7 +89,7 @@ export function Hero() {
                     mb-4
                   "
                 >
-                  Construindo o Futuro
+                  Obras em Rondônia
                 </h1>
 
                 <p
@@ -101,7 +102,7 @@ export function Hero() {
                     max-w-lg
                   "
                 >
-                  Mais de 87 obras concluídas na cidade.
+                  {/* Mais de 87 obras concluídas na cidade. */}
                 </p>
 
               </div>
@@ -177,7 +178,7 @@ export function Hero() {
                     mb-4
                   "
                 >
-                  Investindo em Qualidade de Vida
+                  Um gesto muda o fim da história
                 </h1>
 
                 <p
@@ -190,7 +191,7 @@ export function Hero() {
                     max-w-lg
                   "
                 >
-                  Mais de R$ 45 milhões em projetos.
+                  {/* Mais de R$ 45 milhões em projetos. */}
                 </p>
 
               </div>

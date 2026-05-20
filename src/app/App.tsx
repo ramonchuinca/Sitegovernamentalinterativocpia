@@ -94,7 +94,7 @@ export default function App() {
         mx-auto
       "
     >
-      {'Investindo em infraestrutura médica moderna e profissionais capacitados para cuidar da nossa gente'}
+      {'Se você vir esse sinal, não ignore. Aja com discrição'}
     </TextAnimate>
   }
   stats={[

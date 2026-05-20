@@ -68,6 +68,13 @@ export function VideoShowcase() {
   ======================================== */
 
   const videos = [
+
+     {
+      title: 'Centro Educacional Integrado',
+      description: 'Novo complexo educacional moderno',
+      image:
+        '/src/app/components/figma/gif maos.gif',
+    },
     {
       title: 'Centro Educacional Integrado',
       description: 'Novo complexo educacional moderno',

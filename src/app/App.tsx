@@ -25,9 +25,9 @@ export default function App() {
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
-      {/* <Stats3D /> */}
       <Stats />
       <Impact />
+      {/* <Stats3D /> */}
 
     <ImpactBanner
   background={

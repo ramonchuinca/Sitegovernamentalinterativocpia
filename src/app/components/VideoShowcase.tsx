@@ -76,22 +76,22 @@ export function VideoShowcase() {
         '/src/app/components/figma/gif maos.gif',
     },
     {
-      title: 'Centro Educacional Integrado',
-      description: 'Novo complexo educacional moderno',
+      title: 'De forma discreta, abra a palma da mão',
+      description: '',
       image:
-        'https://images.unsplash.com/photo-1541888804692-532ae8a87985?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=300',
+        '/src/app/components/figma/mao01.png',
     },
     {
-      title: 'Duplicação da Avenida',
-      description: 'Mobilidade urbana avançando',
+      title: 'Dobre o polegar para dentro',
+      description: '',
       image:
-        'https://images.unsplash.com/photo-1685953055318-0080d30a4f67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=300',
+        '/src/app/components/figma/mao02.png',
     },
     {
-      title: 'Parque Sustentável',
-      description: 'Transformação urbana em andamento',
+      title: 'Feche os outros dedos por cima',
+      description: '',
       image:
-        'https://images.unsplash.com/photo-1663113569396-eea56c1a313d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=300',
+        '/src/app/components/figma/mao03.png',
     },
   ];
 
@@ -251,7 +251,7 @@ export function VideoShowcase() {
             "
           >
 
-            {'Veja a Transformação Acontecendo'
+            {'Um gesto simples que pode mudar o fim da sua história.'
               .split('')
               .map((letter, index) => (
 
@@ -314,8 +314,7 @@ export function VideoShowcase() {
               leading-relaxed
             "
           >
-            Acompanhe o progresso das obras e veja os bastidores
-            das transformações acontecendo em tempo real.
+            Saiba como pedir ajuda
           </motion.p>
 
         </motion.div>
@@ -545,7 +544,7 @@ export function VideoShowcase() {
                         justify-center
                       "
                     >
-                      <Play className="w-8 h-8" />
+                      {/* <Play className="w-8 h-8" /> */}
                     </div>
 
                   </div>

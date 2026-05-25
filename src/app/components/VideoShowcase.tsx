@@ -36,13 +36,13 @@ export function VideoShowcase() {
   });
 
   /* ========================================
-     SMOOTH TRANSFORMS
+     TRANSFORMS
   ======================================== */
 
   const titleY = useTransform(
     smoothProgress,
     [0, 1],
-    [40, -20]
+    [60, -40]
   );
 
   const opacity = useTransform(
@@ -54,13 +54,66 @@ export function VideoShowcase() {
   const videoScale = useTransform(
     smoothProgress,
     [0, 1],
-    [1, 1.04]
+    [0.9, 1.06]
   );
 
   const cardsY = useTransform(
     smoothProgress,
     [0, 1],
-    [40, -10]
+    [80, -30]
+  );
+
+  const sectionOpacity = useTransform(
+    smoothProgress,
+    [0, 0.15, 0.85, 1],
+    [0, 1, 1, 0]
+  );
+
+  const sectionScale = useTransform(
+    smoothProgress,
+    [0, 0.5, 1],
+    [0.92, 1, 0.95]
+  );
+
+  const sectionRotate = useTransform(
+    smoothProgress,
+    [0, 1],
+    [-1.5, 1.5]
+  );
+
+  const backgroundY = useTransform(
+    smoothProgress,
+    [0, 1],
+    [-120, 120]
+  );
+
+  const backgroundScale = useTransform(
+    smoothProgress,
+    [0, 0.5, 1],
+    [1.2, 1.05, 1.2]
+  );
+
+  const blurEffect = useTransform(
+    smoothProgress,
+    [0, 0.3, 0.7, 1],
+    [8, 0, 0, 8]
+  );
+
+  const blurFilter = useTransform(
+    blurEffect,
+    (value) => `blur(${value}px)`
+  );
+
+  const videoRotate = useTransform(
+    smoothProgress,
+    [0, 1],
+    [-2, 2]
+  );
+
+  const cardsRotate = useTransform(
+    smoothProgress,
+    [0, 1],
+    [2, -2]
   );
 
   /* ========================================
@@ -68,9 +121,8 @@ export function VideoShowcase() {
   ======================================== */
 
   const videos = [
-
-     {
-      title: 'Centro Educacional Integrado',
+    {
+      title: 'Como Pedir Ajuda',
       description: 'Novo complexo educacional moderno',
       image:
         '/src/app/components/figma/gif maos.gif',
@@ -97,27 +149,35 @@ export function VideoShowcase() {
 
   return (
 
-    <section
+    <motion.section
       ref={sectionRef}
+      style={{
+        opacity: sectionOpacity,
+        scale: sectionScale,
+        rotateX: sectionRotate,
+        transformPerspective: 1200,
+      }}
       className="
         relative
         py-28
         overflow-hidden
         text-white
       "
-      style={{
-        background:
-          'linear-gradient(180deg, #12223A 0%, #0B1628 100%)',
-      }}
     >
 
       {/* ========================================
-          BACKGROUND PARALLAX
+          BACKGROUND
       ======================================== */}
 
       <Parallax speed={-12}>
 
-        <div className="absolute inset-0 opacity-10">
+        <motion.div
+          style={{
+            y: backgroundY,
+            scale: backgroundScale,
+          }}
+          className="absolute inset-0 opacity-10"
+        >
 
           <img
             src="/src/app/components/figma/base mulher copy.webp"
@@ -131,7 +191,7 @@ export function VideoShowcase() {
             "
           />
 
-        </div>
+        </motion.div>
 
       </Parallax>
 
@@ -151,10 +211,22 @@ export function VideoShowcase() {
       />
 
       {/* ========================================
-          GLOW EFFECT
+          GLOW
       ======================================== */}
 
-      <div
+      <motion.div
+        style={{
+          y: useTransform(
+            smoothProgress,
+            [0, 1],
+            [-80, 120]
+          ),
+          scale: useTransform(
+            smoothProgress,
+            [0, 0.5, 1],
+            [0.8, 1.2, 0.9]
+          ),
+        }}
         className="
           absolute
           top-0
@@ -170,6 +242,9 @@ export function VideoShowcase() {
       />
 
       <div
+        style={{
+          perspective: 1200,
+        }}
         className="
           relative
           max-w-7xl
@@ -188,6 +263,11 @@ export function VideoShowcase() {
           style={{
             y: titleY,
             opacity,
+            scale: useTransform(
+              smoothProgress,
+              [0, 0.5, 1],
+              [0.9, 1, 0.95]
+            ),
           }}
           className="
             text-center
@@ -195,8 +275,6 @@ export function VideoShowcase() {
             will-change-transform
           "
         >
-
-          {/* BADGE */}
 
           <motion.div
             initial={{
@@ -238,8 +316,6 @@ export function VideoShowcase() {
             </span>
 
           </motion.div>
-
-          {/* TITLE */}
 
           <h2
             className="
@@ -287,8 +363,6 @@ export function VideoShowcase() {
 
           </h2>
 
-          {/* DESCRIPTION */}
-
           <motion.p
             initial={{
               opacity: 0,
@@ -323,7 +397,14 @@ export function VideoShowcase() {
             GRID
         ======================================== */}
 
-        <div
+        <motion.div
+          style={{
+            rotateX: useTransform(
+              smoothProgress,
+              [0, 1],
+              [4, -4]
+            ),
+          }}
           className="
             grid
             lg:grid-cols-2
@@ -341,9 +422,18 @@ export function VideoShowcase() {
             <motion.div
               style={{
                 scale: videoScale,
+                rotate: videoRotate,
+                y: useTransform(
+                  smoothProgress,
+                  [0, 1],
+                  [60, -60]
+                ),
+                filter: blurFilter,
               }}
               whileHover={{
-                scale: 1.01,
+                scale: 1.03,
+                rotateY: 4,
+                rotateX: 2,
               }}
               transition={{
                 duration: 0.4,
@@ -374,7 +464,7 @@ export function VideoShowcase() {
                       w-full
                       h-full
                       object-cover
-                      group-hover:scale-105
+                      group-hover:scale-110
                       transition-transform
                       duration-1000
                       ease-out
@@ -388,8 +478,6 @@ export function VideoShowcase() {
                       bg-black/40
                     "
                   />
-
-                  {/* PLAY */}
 
                   <button
                     onClick={() => setIsPlaying(true)}
@@ -410,7 +498,8 @@ export function VideoShowcase() {
                         scale: 0.96,
                       }}
                       animate={{
-                        scale: [1, 1.04, 1],
+                        scale: [1, 1.08, 1],
+                        opacity: [0.8, 1, 0.8],
                       }}
                       transition={{
                         duration: 3,
@@ -462,149 +551,167 @@ export function VideoShowcase() {
           <motion.div
             style={{
               y: cardsY,
+              rotate: cardsRotate,
             }}
             className="space-y-6"
           >
 
-            {videos.map((video, index) => (
+            {videos.map((video, index) => {
 
-              <motion.div
-                key={index}
-                initial={{
-                  opacity: 0,
-                  x: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                whileHover={{
-                  y: -4,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  ease: 'easeOut',
-                }}
-                viewport={{
-                  once: true,
-                }}
-                className="
-                  group
-                  bg-white/[0.06]
-                  backdrop-blur-2xl
-                  border
-                  border-white/10
-                  rounded-3xl
-                  p-6
-                  shadow-xl
-                  hover:bg-white/[0.08]
-                  transition-all
-                  duration-500
-                  cursor-pointer
-                "
-              >
+              const cardParallax = useTransform(
+                smoothProgress,
+                [0, 1],
+                [index * 30, -(index * 20)]
+              );
 
-                <div className="flex gap-5">
+              return (
 
-                  {/* IMAGE */}
+                <motion.div
+                  key={index}
+                  style={{
+                    y: cardParallax,
+                  }}
+                  initial={{
+                    opacity: 0,
+                    x: 40,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  whileHover={{
+                    y: -10,
+                    scale: 1.02,
+                    rotateX: 6,
+                    rotateY: -6,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.1,
+                    ease: 'easeOut',
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  className="
+                    group
+                    bg-white/[0.06]
+                    backdrop-blur-2xl
+                    border
+                    border-white/10
+                    rounded-3xl
+                    p-6
+                    shadow-xl
+                    hover:bg-white/[0.08]
+                    transition-all
+                    duration-500
+                    cursor-pointer
+                  "
+                >
 
-                  <div
-                    className="
-                      relative
-                      w-28
-                      h-28
-                      rounded-2xl
-                      overflow-hidden
-                      flex-shrink-0
-                    "
-                  >
+                  <div className="flex gap-5">
 
-                    <img
-                      src={video.image}
-                      alt={video.title}
-                      className="
-                        w-full
-                        h-full
-                        object-cover
-                        group-hover:scale-110
-                        transition-transform
-                        duration-700
-                        ease-out
-                      "
-                    />
+                    {/* IMAGE */}
 
                     <div
                       className="
-                        absolute
-                        inset-0
-                        bg-black/30
-                        flex
-                        items-center
-                        justify-center
+                        relative
+                        w-28
+                        h-28
+                        rounded-2xl
+                        overflow-hidden
+                        flex-shrink-0
                       "
                     >
-                      {/* <Play className="w-8 h-8" /> */}
+
+                      <img
+                        src={video.image}
+                        alt={video.title}
+                        className="
+                          w-full
+                          h-full
+                          object-cover
+                          group-hover:scale-125
+                          group-hover:rotate-2
+                          transition-transform
+                          duration-700
+                          ease-out
+                        "
+                      />
+
+                      <div
+                        className="
+                          absolute
+                          inset-0
+                          bg-black/30
+                          flex
+                          items-center
+                          justify-center
+                        "
+                      />
+
+                    </div>
+
+                    {/* CONTENT */}
+
+                    <div className="flex-1">
+
+                      <h4
+                        className="
+                          text-xl
+                          font-semibold
+                          mb-2
+                          text-white
+                          group-hover:text-blue-300
+                          transition-colors
+                          duration-300
+                        "
+                      >
+                        {video.title}
+                      </h4>
+
+                      <p
+                        className="
+                          text-blue-100/70
+                          mb-4
+                          leading-relaxed
+                        "
+                      >
+                        {video.description}
+                      </p>
+
+                      <div
+                        className="
+                          flex
+                          items-center
+                          gap-2
+                          text-sm
+                          text-blue-200/60
+                        "
+                      >
+
+                        <Volume2 className="w-4 h-4" />
+
+                        <span>4:30 min</span>
+
+                      </div>
+
                     </div>
 
                   </div>
 
-                  {/* CONTENT */}
+                </motion.div>
 
-                  <div className="flex-1">
+              );
 
-                    <h4
-                      className="
-                        text-xl
-                        font-semibold
-                        mb-2
-                        text-white
-                        group-hover:text-blue-300
-                        transition-colors
-                        duration-300
-                      "
-                    >
-                      {video.title}
-                    </h4>
-
-                    <p
-                      className="
-                        text-blue-100/70
-                        mb-4
-                        leading-relaxed
-                      "
-                    >
-                      {video.description}
-                    </p>
-
-                    <div
-                      className="
-                        flex
-                        items-center
-                        gap-2
-                        text-sm
-                        text-blue-200/60
-                      "
-                    >
-
-                      <Volume2 className="w-4 h-4" />
-
-                      <span>4:30 min</span>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </motion.div>
-
-            ))}
+            })}
 
           </motion.div>
 
-        </div>
+        </motion.div>
+
       </div>
-    </section>
+
+    </motion.section>
   );
 }

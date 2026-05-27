@@ -1,124 +1,414 @@
-import { Clock, MapPin, TrendingUp, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from './ImageWithFallback';
 
 export function FeaturedProjects() {
+
   const projects = [
     {
-      title: 'Novo Hospital Regional',
-      location: 'Zona Sul',
-      image: 'https://images.unsplash.com/photo-1769147555720-71fc71bfc216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
+      title: 'Ações de Prevenção das Queimadas',
+      location: 'Rondônia',
+      image: '/src/app/components/figma/Inauguração_Corpo_de_Bombeiro_de_Candeias_17062016_Fotos_MaiconLemes-25.jpg',
       progress: 85,
-      investment: 'R$ 12M',
-      impact: '200 mil pessoas atendidas por ano',
-      status: 'Inauguração prevista para Junho/2026',
-      highlight: true
+      investment: '+250 Militares em Campo',
+      impact: 'Este ano já estamos respirando melhor!',
+      status: 'Operação em andamento',
+      highlight: true,
+
+      topics: [
+        'Projeto Operação Verde',
+        '+250 Militares em Campo',
+        'Monitoramento Aéreo',
+        '+430 Atividades de Educação Ambiental',
+      ],
     },
+
     {
       title: 'Centro Educacional Integrado',
       location: 'Zona Norte',
-      image: 'https://images.unsplash.com/photo-1762536859942-8076505f7c62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
+      image:
+        'https://images.unsplash.com/photo-1762536859942-8076505f7c62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
       progress: 60,
       investment: 'R$ 5.8M',
       impact: '1.500 alunos beneficiados',
-      status: 'Em construção acelerada'
+      status: 'Em construção acelerada',
+
+      topics: [
+        'Novas salas tecnológicas',
+        'Espaços climatizados',
+        'Quadra poliesportiva',
+        'Biblioteca moderna',
+      ],
     },
+
     {
       title: 'Parque Linear Sustentável',
       location: 'Centro',
-      image: 'https://images.unsplash.com/photo-1760963720238-bf7086d039d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
+      image:
+        'https://images.unsplash.com/photo-1760963720238-bf7086d039d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
       progress: 45,
       investment: 'R$ 3.2M',
       impact: '20 hectares de área verde',
-      status: 'Fase de paisagismo'
-    }
+      status: 'Fase de paisagismo',
+
+      topics: [
+        'Áreas de lazer',
+        'Pistas de caminhada',
+        'Iluminação sustentável',
+        'Espaços de convivência',
+      ],
+    },
   ];
 
   return (
-    <section className="py-20 bg-white">
+
+    <section className="py-20 bg-white overflow-hidden">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full mb-4">
-            <span className="text-sm">Destaques</span>
+
+        {/* HEADER */}
+
+        <div className="text-center mb-20">
+
+          <div
+            className="
+              inline-block
+              px-5
+              py-2
+              bg-primary/10
+              text-primary
+              rounded-full
+              mb-5
+            "
+          >
+            <span className="text-sm font-medium">
+              Destaques
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl mb-4">Projetos que Estão Transformando a Cidade</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Conheça as obras mais importantes que estão acontecendo agora
+
+          <h2
+            className="
+              text-4xl
+              sm:text-5xl
+              lg:text-6xl
+              font-black
+              tracking-tight
+              mb-6
+            "
+          >
+            MOTIVOS PARA SE ORGULHAR DE RONDÔNIA
+          </h2>
+
+          <p
+            className="
+              text-muted-foreground
+              text-lg
+              max-w-3xl
+              mx-auto
+              leading-relaxed
+            "
+          >
+            Conheça ações e projetos que estão
+            transformando vidas em Rondônia.
           </p>
+
         </div>
 
-        <div className="space-y-8">
+        {/* PROJECTS */}
+
+        <div className="space-y-14">
+
           {projects.map((project, index) => (
+
             <div
               key={project.title}
-              className={`group relative overflow-hidden rounded-2xl ${
-                project.highlight ? 'lg:h-[500px]' : 'lg:h-[400px]'
-              }`}
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[32px]
+                border
+                border-zinc-200
+                shadow-[0_15px_50px_rgba(0,0,0,0.08)]
+                bg-white
+              "
             >
-              <div className="grid lg:grid-cols-2 gap-0 h-full">
-                <div className={`relative h-64 lg:h-full ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+
+              <div className="grid lg:grid-cols-2">
+
+                {/* IMAGE */}
+
+                <div
+                  className={`
+                    relative
+                    min-h-[350px]
+                    lg:min-h-[620px]
+                    overflow-hidden
+                    ${index % 2 === 0
+                      ? 'lg:order-1'
+                      : 'lg:order-2'}
+                  `}
+                >
+
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="
+                      w-full
+                      h-full
+                      object-cover
+                      group-hover:scale-105
+                      transition-transform
+                      duration-700
+                    "
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-                  <div className="absolute top-6 left-6">
-                    <div className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-sm">
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      bg-gradient-to-t
+                      from-black/70
+                      via-black/10
+                      to-transparent
+                    "
+                  />
+
+                  {/* STATUS */}
+
+                  <div
+                    className="
+                      absolute
+                      top-6
+                      left-6
+                    "
+                  >
+
+                    <div
+                      className="
+                        px-4
+                        py-2
+                        rounded-full
+                        bg-white/15
+                        backdrop-blur-xl
+                        border
+                        border-white/10
+                        text-white
+                        text-sm
+                        font-medium
+                      "
+                    >
                       {project.status}
                     </div>
+
                   </div>
+
                 </div>
 
-                <div className={`bg-gradient-to-br from-muted/30 to-background p-8 lg:p-12 flex flex-col justify-center ${
-                  index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'
-                }`}>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                {/* CONTENT */}
+
+                <div
+                  className={`
+                    relative
+                    p-8
+                    lg:p-16
+                    flex
+                    flex-col
+                    justify-center
+                    bg-gradient-to-br
+                    from-background
+                    to-muted/30
+                    ${index % 2 === 0
+                      ? 'lg:order-2'
+                      : 'lg:order-1'}
+                  `}
+                >
+
+                  {/* LOCATION */}
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      text-sm
+                      text-muted-foreground
+                      mb-6
+                    "
+                  >
+
                     <MapPin className="w-4 h-4" />
+
                     <span>{project.location}</span>
+
                   </div>
 
-                  <h3 className="text-2xl lg:text-3xl mb-4">{project.title}</h3>
+                  {/* TITLE */}
 
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-start gap-3">
-                      <TrendingUp className="w-5 h-5 text-primary mt-0.5" />
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Progresso</p>
-                        <div className="flex items-center gap-3">
-                          <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all"
-                              style={{ width: `${project.progress}%` }}
-                            />
-                          </div>
-                          <span className="text-sm">{project.progress}%</span>
+                  <h3
+                    className="
+                      text-4xl
+                      lg:text-5xl
+                      font-black
+                      leading-tight
+                      tracking-tight
+                      mb-6
+                    "
+                  >
+                    {project.title}
+                  </h3>
+
+                  {/* DESCRIPTION */}
+
+                  <p
+                    className="
+                      text-lg
+                      text-muted-foreground
+                      leading-relaxed
+                      mb-10
+                      max-w-2xl
+                    "
+                  >
+                    {project.impact}
+                  </p>
+
+                  {/* LIST */}
+
+                  <div className="space-y-6">
+
+                    {project.topics?.map((topic, topicIndex) => (
+
+                      <div
+                        key={topicIndex}
+                        className="
+                          flex
+                          items-start
+                          gap-4
+                        "
+                      >
+
+                        <div
+                          className="
+                            w-3
+                            h-3
+                            rounded-full
+                            bg-primary
+                            mt-2
+                            flex-shrink-0
+                          "
+                        />
+
+                        <div>
+
+                          <p
+                            className="
+                              text-lg
+                              leading-relaxed
+                              font-medium
+                            "
+                          >
+                            {topic}
+                          </p>
+
                         </div>
-                      </div>
-                    </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-1">Investimento</p>
-                        <p className="text-lg">{project.investment}</p>
                       </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-1">Impacto</p>
-                        <p className="text-sm">{project.impact}</p>
-                      </div>
-                    </div>
+
+                    ))}
+
                   </div>
 
-                  <button className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all group">
-                    <span>Ver detalhes completos</span>
-                    <ArrowRight className="w-4 h-4" />
+                  {/* PROGRESS */}
+
+                  <div className="mt-10">
+
+                    <div
+                      className="
+                        flex
+                        items-center
+                        justify-between
+                        mb-3
+                      "
+                    >
+
+                      <span
+                        className="
+                          text-sm
+                          text-muted-foreground
+                        "
+                      >
+                        Andamento da ação
+                      </span>
+
+                      <span className="font-semibold">
+                        {project.progress}%
+                      </span>
+
+                    </div>
+
+                    <div
+                      className="
+                        h-3
+                        bg-muted
+                        rounded-full
+                        overflow-hidden
+                      "
+                    >
+
+                      <div
+                        className="
+                          h-full
+                          bg-primary
+                          rounded-full
+                          transition-all
+                          duration-700
+                        "
+                        style={{
+                          width: `${project.progress}%`,
+                        }}
+                      />
+
+                    </div>
+
+                  </div>
+
+                  {/* BUTTON */}
+
+                  <button
+                    className="
+                      mt-12
+                      inline-flex
+                      items-center
+                      gap-3
+                      text-primary
+                      font-semibold
+                      hover:gap-5
+                      transition-all
+                      duration-300
+                    "
+                  >
+
+                    <span>
+                      Ver detalhes completos
+                    </span>
+
+                    <ArrowRight className="w-5 h-5" />
+
                   </button>
+
                 </div>
+
               </div>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
+
   );
+
 }

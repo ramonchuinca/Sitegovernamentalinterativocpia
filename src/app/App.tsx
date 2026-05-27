@@ -19,6 +19,9 @@ import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
 import { FloatingCTA } from './components/FloatingCTA';
 import { TextAnimate } from './components/magicui/text-animate';
+import { ModernParallaxBanner } from './components/ModernParallaxBanner';
+import { CampaignVideoSection } from './components/CampaignVideoSection';
+
 
 export default function App() {
   return (
@@ -29,27 +32,27 @@ export default function App() {
       <Impact />
       {/* <Stats3D /> */}
 
-    <ImpactBanner
-  background={
-    <picture>
+      <ImpactBanner
+        background={
+          <picture>
 
-      {/* MOBILE */}
-      <source
-        media="(max-width: 600px)"
-        srcSet="/src/app/components/figma/mulher_vert-2.webp"
-      />
+            {/* MOBILE */}
+            <source
+              media="(max-width: 600px)"
+              srcSet="/src/app/components/figma/mulher_vert-2.webp"
+            />
 
-      {/* DESKTOP */}
-      <source
-        media="(min-width: 601px)"
-        srcSet="/src/app/components/figma/foto-mulher-1.webp"
-      />
+            {/* DESKTOP */}
+            <source
+              media="(min-width: 601px)"
+              srcSet="/src/app/components/figma/foto-mulher-1.webp"
+            />
 
-      {/* DEFAULT */}
-      <img
-        src="/src/app/components/figma/base mulher copy.webp"
-        alt="obra 2"
-        className="
+            {/* DEFAULT */}
+            <img
+              src="/src/app/components/figma/base mulher copy.webp"
+              alt="obra 2"
+              className="
           absolute
           inset-0
           w-full
@@ -57,15 +60,15 @@ export default function App() {
           object-cover
           object-center
         "
-      />
+            />
 
-    </picture>
-  }
-  title={
-    <TextAnimate
-      animation="blurInUp"
-      by="word"
-      className="
+          </picture>
+        }
+        title={
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            className="
         text-3xl
         sm:text-4xl
         lg:text-5xl
@@ -76,16 +79,16 @@ export default function App() {
         max-w-4xl
         mx-auto
       "
-    >
-      {'Quando a voz não sai, o sinal fala'}
-    </TextAnimate>
-  }
-  subtitle={
-    <TextAnimate
-      animation="fadeIn"
-      by="word"
-      delay={0.3}
-      className="
+          >
+            {'Quando a voz não sai, o sinal fala'}
+          </TextAnimate>
+        }
+        subtitle={
+          <TextAnimate
+            animation="fadeIn"
+            by="word"
+            delay={0.3}
+            className="
         text-lg
         sm:text-xl
         text-white/90
@@ -93,20 +96,42 @@ export default function App() {
         max-w-2xl
         mx-auto
       "
-    >
-      {'Se você vir esse sinal, não ignore. Aja com discrição'}
-    </TextAnimate>
-  }
-  stats={[
-  {
-    label: 'SAIBA MAIS',
-    value: '',
-    link: 'https://rondoniasocial.ro.gov.br/mulherprotegida/'
-  }
-]}
-/>
+          >
+            {'Se você vir esse sinal, não ignore. Aja com discrição'}
+          </TextAnimate>
+        }
+        stats={[
+          {
+            label: 'SAIBA MAIS',
+            value: '',
+            link: 'https://rondoniasocial.ro.gov.br/mulherprotegida/'
+          }
+        ]}
+      />
 
       <VideoShowcase />
+
+
+      <ModernParallaxBanner
+        desktopImage="/src/app/components/figma/1920.jpg"
+        mobileImage="/src/app/components/figma/400x900.jpg"
+        highlight="Mobilidade Urbana"
+        title="Caminhos Mais Rápidos, Vida Melhor"
+        description="A duplicação da Avenida Principal e novos corredores de ônibus vão reduzir o tempo de deslocamento em até 40%."
+      />
+
+
+         {/* PRIMEIRO COMPONENTE */}
+
+      <CampaignVideoSection
+  videoId="bUfdhAOg-LE"
+  title="Mais de 100 mil rondonienses transformaram suas vidas"
+  description="
+    Em seis anos, milhares de pessoas aprenderam uma profissão,
+    conquistaram oportunidades e mudaram sua realidade através
+    de programas de qualificação e inclusão.
+  "
+/>
 
       <FeaturedProjects />
 

@@ -22,41 +22,55 @@ export function FeaturedProjects() {
       ],
     },
 
+   {
+  title: '2º Melhor Índice de Combate à Criminalidade',
+  location: 'Rondônia',
+  image: '/src/app/components/figma/policia-formando.jpg',
+  progress: 92,
+  investment: 'Uso de Inteligência Analítica',
+  impact: 'Rondônia entre os estados com melhores resultados no combate à criminalidade.',
+  status: 'Operações estratégicas em andamento',
+
+  topics: [
+    'Uso de Inteligência Analítica',
+    'Serviços de Investigação e Captura',
+    'Procedimentos Investigativos',
+    'Ações integradas de segurança pública',
+  ],
+},
+
     {
-      title: 'Centro Educacional Integrado',
-      location: 'Zona Norte',
-      image:
-        'https://images.unsplash.com/photo-1762536859942-8076505f7c62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-      progress: 60,
-      investment: 'R$ 5.8M',
-      impact: '1.500 alunos beneficiados',
-      status: 'Em construção acelerada',
+  title: 'Ações que Geram Trabalho',
+  location: 'Rondônia',
+  image: '/src/app/components/figma/trabalhador trabalho-1.webp',
+  progress: 94,
+  investment: '+16.800 novas empresas abertas',
+  impact: '2° Estado com menor desemprego do país.',
+  status: 'Mais oportunidades e geração de renda',
 
-      topics: [
-        'Novas salas tecnológicas',
-        'Espaços climatizados',
-        'Quadra poliesportiva',
-        'Biblioteca moderna',
-      ],
-    },
+  topics: [
+    'Plataforma Geração Emprego',
+    'Programa Vencer',
+    '+16.800 novas empresas abertas',
+    '+3,3 mil vagas de emprego ofertadas',
+  ],
+},
+     {
+  title: '2° Maior Produtor de Café Robusta',
+  location: 'Rondônia',
+  image: '/src/app/components/figma/IMAGEM DE GRÃO DE CAFE.jpg',
+  progress: 88,
+  investment: 'Incentivos pelo programa Plante Mais',
+  impact: 'Rondônia se destaca nacionalmente pela qualidade e produção do café robusta.',
+  status: 'Fortalecimento da produção cafeeira',
 
-    {
-      title: 'Parque Linear Sustentável',
-      location: 'Centro',
-      image:
-        'https://images.unsplash.com/photo-1760963720238-bf7086d039d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-      progress: 45,
-      investment: 'R$ 3.2M',
-      impact: '20 hectares de área verde',
-      status: 'Fase de paisagismo',
-
-      topics: [
-        'Áreas de lazer',
-        'Pistas de caminhada',
-        'Iluminação sustentável',
-        'Espaços de convivência',
-      ],
-    },
+  topics: [
+    'Incentivos pelo programa Plante Mais',
+    'Incentivos pelo programa Mais Calcário',
+    'Fomento ao melhoramento da bebida com o ConCafé',
+    'Valorização dos produtores rurais',
+  ],
+},
   ];
 
   return (

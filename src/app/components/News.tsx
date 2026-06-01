@@ -1,146 +1,440 @@
-import { Calendar, ArrowRight, Newspaper } from 'lucide-react';
-import { ImageWithFallback } from './ImageWithFallback';
+import {
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
+
+import {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 export function News() {
-  const news = [
+
+  const [current, setCurrent] =
+    useState(0);
+
+  const intervalRef =
+    useRef<ReturnType<typeof setInterval> | null>(
+      null
+    );
+
+  const newsImages = [
+
     {
       id: 1,
-      title: 'Prefeito anuncia ampliação do Hospital Regional com investimento de R$ 12 milhões',
-      excerpt: 'Nova ala terá 50 leitos e equipamentos de última geração para atendimento da população.',
-      image: 'https://images.unsplash.com/photo-1771340591377-4a23dc88d917?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-      date: '15 Abr 2026',
-      category: 'Saúde',
-      readTime: '3 min'
+
+      desktop:
+        '/src/app/components/figma/senhor-1.jpg',
+
+      mobile:
+        '/src/app/components/figma/senhor-2.jpg',
     },
+
     {
       id: 2,
-      title: 'Obra de duplicação da Avenida Principal atinge 60% de conclusão',
-      excerpt: 'Projeto que vai melhorar o trânsito e reduzir congestionamentos está dentro do prazo previsto.',
-      image: 'https://images.unsplash.com/photo-1663058480199-acbc638bf21a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-      date: '12 Abr 2026',
-      category: 'Mobilidade',
-      readTime: '4 min'
+
+      desktop:
+        '/src/app/components/figma/hospital-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/hospital-vertical.jpg',
     },
+
     {
       id: 3,
-      title: 'Centro Educacional Integrado receberá 1.500 alunos a partir de agosto',
-      excerpt: 'Novo complexo educacional contará com laboratórios modernos e espaços de convivência.',
-      image: 'https://images.unsplash.com/photo-1632862378069-4ad0348cea4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-      date: '10 Abr 2026',
-      category: 'Educação',
-      readTime: '5 min'
+
+      desktop:
+        '/src/app/components/figma/avenida-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/avenida-vertical.jpg',
     },
+
     {
       id: 4,
-      title: 'Inaugurado Parque Linear com área verde de 20 hectares',
-      excerpt: 'Espaço de lazer e preservação ambiental já está disponível para a população.',
-      image: 'https://images.unsplash.com/photo-1774799975917-5a893e0d576a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-      date: '08 Abr 2026',
-      category: 'Meio Ambiente',
-      readTime: '2 min'
-    }
+
+      desktop:
+        '/src/app/components/figma/escola-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/escola-vertical.jpg',
+    },
+
+    {
+      id: 5,
+
+      desktop:
+        '/src/app/components/figma/parque-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/parque-vertical.jpg',
+    },
+
+    {
+      id: 6,
+
+      desktop:
+        '/src/app/components/figma/seguranca-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/seguranca-vertical.jpg',
+    },
+
+    {
+      id: 7,
+
+      desktop:
+        '/src/app/components/figma/emprego-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/emprego-vertical.jpg',
+    },
+
+    {
+      id: 8,
+
+      desktop:
+        '/src/app/components/figma/infra-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/infra-vertical.jpg',
+    },
+
+    {
+      id: 9,
+
+      desktop:
+        '/src/app/components/figma/cafe-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/cafe-vertical.jpg',
+    },
+
+    {
+      id: 10,
+
+      desktop:
+        '/src/app/components/figma/ambiental-horizontal.jpg',
+
+      mobile:
+        '/src/app/components/figma/ambiental-vertical.jpg',
+    },
   ];
 
-  const featured = news[0];
-  const regularNews = news.slice(1);
+  // AUTO PLAY
+
+  useEffect(() => {
+
+    intervalRef.current =
+      setInterval(() => {
+
+        setCurrent((prev) =>
+          prev === newsImages.length - 1
+            ? 0
+            : prev + 1
+        );
+
+      }, 5000);
+
+    return () => {
+
+      if (intervalRef.current) {
+
+        clearInterval(intervalRef.current);
+      }
+    };
+
+  }, []);
+
+  // BOTÕES
+
+  const nextSlide = () => {
+
+    setCurrent((prev) =>
+      prev === newsImages.length - 1
+        ? 0
+        : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+
+    setCurrent((prev) =>
+      prev === 0
+        ? newsImages.length - 1
+        : prev - 1
+    );
+  };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full mb-4">
-              <span className="text-sm">Notícias</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl mb-2">Últimas Atualizações</h2>
-            <p className="text-muted-foreground text-lg">
-              Fique por dentro de tudo que está acontecendo
-            </p>
-          </div>
-          <button className="hidden sm:flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-accent transition-colors">
-            <Newspaper className="w-4 h-4" />
-            <span>Ver Todas</span>
+
+    <section
+      className="
+        relative
+        py-24
+        bg-[#020817]
+        overflow-hidden
+      "
+    >
+
+      {/* BG EFFECT */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.15),transparent_45%)]
+        "
+      />
+
+      <div
+        className="
+          max-w-[1700px]
+          mx-auto
+          px-4
+          relative
+          z-10
+        "
+      >
+
+        {/* HEADER */}
+
+        <div
+          className="
+            text-center
+            mb-14
+          "
+        >
+
+          <span
+            className="
+              inline-flex
+              items-center
+              px-5
+              py-2
+              rounded-full
+              bg-cyan-500/10
+              border
+              border-cyan-400/20
+              text-cyan-300
+              uppercase
+              tracking-[0.25em]
+              text-sm
+              mb-6
+            "
+          >
+            Notícias e Atualizações
+          </span>
+
+          <h2
+            className="
+              text-4xl
+              sm:text-5xl
+              lg:text-7xl
+              font-black
+              text-white
+              leading-[1]
+            "
+          >
+            Rondônia em Destaque
+          </h2>
+
+        </div>
+
+        {/* CARD GIGANTE */}
+
+        <div
+          className="
+            relative
+            w-full
+            h-[500px]
+            sm:h-[650px]
+            lg:h-[780px]
+            rounded-[40px]
+            overflow-hidden
+            border
+            border-white/10
+            shadow-[0_40px_120px_rgba(0,0,0,0.45)]
+          "
+        >
+
+          {/* IMAGENS */}
+
+          {newsImages.map(
+            (image, index) => (
+
+              <div
+                key={image.id}
+                className={`
+                  absolute
+                  inset-0
+                  transition-all
+                  duration-[1800ms]
+                  ease-in-out
+                  ${
+                    current === index
+                      ? 'opacity-100 scale-100 z-20'
+                      : 'opacity-0 scale-110 z-10'
+                  }
+                `}
+              >
+
+                <picture
+                  className="
+                    block
+                    w-full
+                    h-full
+                  "
+                >
+
+                  <source
+                    media="(max-width: 768px)"
+                    srcSet={image.mobile}
+                  />
+
+                  <source
+                    media="(min-width: 769px)"
+                    srcSet={image.desktop}
+                  />
+
+                 <img
+  src={image.desktop}
+  alt="Notícia"
+  className="
+    w-full
+    h-full
+    object-contain
+    bg-[#020817]
+  "
+/>
+
+                </picture>
+
+                {/* OVERLAY */}
+
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/80
+                    via-black/20
+                    to-transparent
+                  "
+                />
+
+              </div>
+
+            )
+          )}
+
+          {/* BOTÕES */}
+
+          <button
+            onClick={prevSlide}
+            className="
+              absolute
+              left-6
+              top-1/2
+              -translate-y-1/2
+              z-30
+              w-16
+              h-16
+              rounded-full
+              bg-black/30
+              backdrop-blur-xl
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+              text-white
+              hover:bg-cyan-500/20
+              hover:scale-110
+              transition-all
+              duration-300
+            "
+          >
+
+            <ChevronLeft className="w-8 h-8" />
+
           </button>
-        </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          <div className="lg:col-span-1 group cursor-pointer">
-            <div className="relative h-[400px] rounded-2xl overflow-hidden mb-4">
-              <ImageWithFallback
-                src={featured.image}
-                alt={featured.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <button
+            onClick={nextSlide}
+            className="
+              absolute
+              right-6
+              top-1/2
+              -translate-y-1/2
+              z-30
+              w-16
+              h-16
+              rounded-full
+              bg-black/30
+              backdrop-blur-xl
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+              text-white
+              hover:bg-cyan-500/20
+              hover:scale-110
+              transition-all
+              duration-300
+            "
+          >
 
-              <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 bg-primary text-white rounded-full text-sm">
-                  {featured.category}
-                </span>
-              </div>
+            <ChevronRight className="w-8 h-8" />
 
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <div className="flex items-center gap-3 mb-3 text-sm">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{featured.date}</span>
-                  </div>
-                  <span>•</span>
-                  <span>{featured.readTime} de leitura</span>
-                </div>
-                <h3 className="text-2xl mb-2 text-white">{featured.title}</h3>
-                <p className="text-white/90 mb-4">{featured.excerpt}</p>
-                <button className="inline-flex items-center gap-2 text-white hover:gap-3 transition-all">
-                  <span>Ler matéria completa</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            {regularNews.map((item) => (
-              <div key={item.id} className="group cursor-pointer bg-muted/30 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="flex gap-4">
-                  <div className="relative w-32 h-32 flex-shrink-0">
-                    <ImageWithFallback
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-
-                  <div className="flex-1 p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-1 bg-primary/10 text-primary rounded text-xs">
-                        {item.category}
-                      </span>
-                      <span className="text-xs text-muted-foreground">{item.date}</span>
-                    </div>
-                    <h4 className="mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-                      {item.excerpt}
-                    </p>
-                    <div className="flex items-center gap-1 text-primary text-sm">
-                      <span>Ler mais</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center sm:hidden">
-          <button className="w-full px-6 py-3 border border-border rounded-lg hover:bg-accent transition-colors flex items-center justify-center gap-2">
-            <Newspaper className="w-4 h-4" />
-            <span>Ver Todas as Notícias</span>
           </button>
+
+          {/* INDICADORES */}
+
+          <div
+            className="
+              absolute
+              bottom-8
+              left-1/2
+              -translate-x-1/2
+              z-30
+              flex
+              items-center
+              gap-3
+            "
+          >
+
+            {newsImages.map(
+              (_, index) => (
+
+                <button
+                  key={index}
+                  onClick={() =>
+                    setCurrent(index)
+                  }
+                  className={`
+                    transition-all
+                    duration-300
+                    rounded-full
+                    ${
+                      current === index
+                        ? 'w-14 h-3 bg-cyan-400'
+                        : 'w-3 h-3 bg-white/40 hover:bg-white'
+                    }
+                  `}
+                />
+
+              )
+            )}
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
   );
 }

@@ -1,207 +1,809 @@
-import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+import gsap from 'gsap';
+
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  X,
+} from 'lucide-react';
+
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(
+  ScrollTrigger,
+  SplitText
+);
 
 export function InteractiveGallery() {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const images = [
+  const badgeRef =
+    useRef<HTMLDivElement>(null);
+
+  const [selectedCard, setSelectedCard] =
+    useState<number | null>(null);
+
+  const carouselRef =
+    useRef<HTMLDivElement>(null);
+
+  const titleRef =
+    useRef<HTMLHeadingElement>(null);
+
+  const textRef =
+    useRef<HTMLParagraphElement>(null);
+
+  const autoScrollRef =
+    useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const isHoveringRef =
+    useRef(false);
+
+  const cards = [
+
     {
-      url: 'https://images.unsplash.com/photo-1769147555720-71fc71bfc216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200',
-      title: 'Hospital Regional',
-      description: 'Novas instalações médicas de ponta'
+      image:
+        '/src/app/components/figma/cafe-robustakkk.jpg',
+
+      category: 'Agronegócio',
+
+      title:
+        'Café Robusta Amazônico é elevado a patrimônio cultural de Rondônia',
+
+      text:
+        'O Café Robusta Amazônico recebeu reconhecimento como patrimônio cultural e imaterial do estado, fortalecendo a identidade, produção e valorização da cafeicultura rondoniense.',
+
+      badge: 'Patrimônio Cultural',
+
+      link:
+        'https://rondonia.ro.gov.br/cafe-robusta-amazonico-e-elevado-a-patrimonio-cultural-e-imaterial-do-estado-de-rondonia/',
     },
+
     {
-      url: 'https://images.unsplash.com/photo-1762536859942-8076505f7c62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200',
-      title: 'Centro Educacional',
-      description: 'Infraestrutura moderna para educação'
+      image:
+        '/src/app/components/figma/Sedec_29.05.24_Foto_Daiane-Mendonca-2.jpg',
+
+      category: 'Emprego',
+
+      title:
+        'Com 2,3% de desemprego, Rondônia mantém segunda menor taxa do país',
+
+      text:
+        'Rondônia segue entre os estados com menor índice de desemprego do Brasil, impulsionando o mercado de trabalho, geração de renda e novas oportunidades para a população.',
+
+      badge: '2º Menor Desemprego',
+
+      link:
+        'https://rondonia.ro.gov.br/com-23-de-desemprego-rondonia-mantem-segunda-menor-taxa-do-pais-e-impulsiona-mercado-de-trabalho/',
     },
+
     {
-      url: 'https://images.unsplash.com/photo-1708358131361-93680cf7b4cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200',
-      title: 'Avenida Principal',
-      description: 'Duplicação e modernização viária'
+      image:
+        '/src/app/components/figma/policial civil imagem.jpg',
+
+      category: 'Segurança',
+
+      title:
+        'Rondônia se torna referência nacional com 92% de homicídios esclarecidos',
+
+      text:
+        'O estado alcançou destaque nacional com 92% dos homicídios esclarecidos, fortalecendo a segurança pública por meio de investigação, inteligência e integração das forças policiais.',
+
+      badge: 'Referência Nacional',
+
+      link:
+        'https://rondonia.ro.gov.br/rondonia-se-torna-referencia-nacional-com-92-de-homicidios-esclarecidos/',
     },
+
     {
-      url: 'https://images.unsplash.com/photo-1774799975917-5a893e0d576a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200',
-      title: 'Parque Linear',
-      description: '20 hectares de área verde preservada'
+      image:
+        '/src/app/components/figma/queimadas(23).jpg',
+
+      category: 'Meio Ambiente',
+
+      title:
+        'Rondônia alcança redução histórica nas queimadas e lidera ranking nacional',
+
+      text:
+        'O estado alcançou uma redução histórica nos focos de queimadas, tornando-se referência nacional em ações de prevenção, fiscalização e preservação ambiental.',
+
+      badge: 'Líder Nacional',
+
+      link:
+        'https://rondonia.ro.gov.br/rondonia-alcanca-reducao-historica-nas-queimadas-e-lidera-ranking-nacional/',
     },
+
     {
-      url: 'https://images.unsplash.com/photo-1762356731874-b4042915d34c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200',
-      title: 'Obras em Andamento',
-      description: 'Progresso constante em toda cidade'
+      image:
+        '/src/app/components/figma/tio do buzu.jpg',
+
+      category: 'Emprego e Desenvolvimento',
+
+      title:
+        'Governo de RO oferece mais de 33 mil vagas de emprego com empresas parceiras',
+
+      text:
+        'Com mais de 6.500 empresas parceiras, Rondônia amplia oportunidades de trabalho e fortalece o desenvolvimento econômico em diversas regiões do estado.',
+
+      badge: '+33 Mil Vagas',
+
+      link:
+        'https://rondonia.ro.gov.br/com-6571-empresas-parceiras-o-governo-de-ro-oferece-mais-de-33-mil-vagas-de-emprego/',
     },
+
     {
-      url: 'https://images.unsplash.com/photo-1510846606678-710c05a5c776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200',
-      title: 'Vista Aérea',
-      description: 'Transformação visível de cima'
-    }
+      image:
+        '/src/app/components/figma/patrulha de policia.jpeg',
+
+      category: 'Segurança Pública',
+
+      title:
+        'Reestruturação da Patrulha Maria da Penha amplia proteção às mulheres em Rondônia',
+
+      text:
+        'A nova estrutura da Patrulha Maria da Penha fortaleceu o atendimento às mulheres em situação de vulnerabilidade, ampliando ações de proteção, monitoramento e suporte em Rondônia.',
+
+      badge: 'Proteção às Mulheres',
+
+      link:
+        'https://rondonia.ro.gov.br/reestruturacao-da-patrulha-maria-da-penha-amplia-protecao-as-mulheres-em-rondonia/',
+    },
   ];
 
+  // =========================================
+  // ANIMAÇÕES
+  // =========================================
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+    const container = carouselRef.current;
 
-  const scrollToIndex = (index: number) => {
-    setCurrentIndex(index);
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.offsetWidth / 3;
-      scrollRef.current.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth'
-      });
+    if (
+      !container ||
+      !titleRef.current ||
+      !textRef.current
+    ) return;
+
+    // =========================
+    // AUTO CAROUSEL
+    // =========================
+
+    const startAutoScroll = () => {
+
+      stopAutoScroll();
+
+      autoScrollRef.current =
+        setInterval(() => {
+
+          if (
+            !container ||
+            isHoveringRef.current
+          ) return;
+
+          container.scrollLeft += 1;
+
+          if (
+            container.scrollLeft >=
+            container.scrollWidth / 2
+          ) {
+
+            container.scrollLeft = 0;
+          }
+
+        }, 15);
+    };
+
+    const stopAutoScroll = () => {
+
+      if (autoScrollRef.current) {
+
+        clearInterval(
+          autoScrollRef.current
+        );
+
+        autoScrollRef.current = null;
+      }
+    };
+
+    const handleMouseEnter = () => {
+
+      isHoveringRef.current = true;
+    };
+
+    const handleMouseLeave = () => {
+
+      isHoveringRef.current = false;
+    };
+
+    startAutoScroll();
+
+    container.addEventListener(
+      'mouseenter',
+      handleMouseEnter
+    );
+
+    container.addEventListener(
+      'mouseleave',
+      handleMouseLeave
+    );
+
+    // =========================
+    // SPLIT TEXT
+    // =========================
+
+    const splitTitle = new SplitText(
+      titleRef.current,
+      {
+        type: 'lines,words',
+        linesClass: 'line',
+      }
+    );
+
+    const splitText = new SplitText(
+      textRef.current,
+      {
+        type: 'lines',
+        linesClass: 'line',
+      }
+    );
+
+    gsap.set(
+      [
+        splitTitle.lines,
+        splitText.lines,
+      ],
+      {
+        overflow: 'hidden',
+      }
+    );
+
+    gsap.from(
+      splitTitle.words,
+      {
+        y: 120,
+        opacity: 0,
+        rotateX: -90,
+        stagger: 0.03,
+        duration: 1.3,
+        ease: 'expo.out',
+
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 85%',
+          toggleActions:
+            'play none none reset',
+        },
+      }
+    );
+
+    gsap.from(
+      splitText.lines,
+      {
+        yPercent: 100,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 1,
+        ease: 'power4.out',
+
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: 'top 90%',
+          toggleActions:
+            'play none none reset',
+        },
+      }
+    );
+
+    // =========================
+    // BADGE
+    // =========================
+
+    if (badgeRef.current) {
+
+      gsap.from(
+        badgeRef.current,
+        {
+          opacity: 0,
+          y: -30,
+          scale: 0.8,
+          duration: 1,
+          ease: 'back.out(1.8)',
+
+          scrollTrigger: {
+            trigger: badgeRef.current,
+            start: 'top 90%',
+            toggleActions:
+              'play none none reset',
+          },
+        }
+      );
     }
-  };
 
-  const handlePrevious = () => {
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : images.length - 1;
-    scrollToIndex(newIndex);
-  };
+    // =========================
+    // CARDS
+    // =========================
 
-  const handleNext = () => {
-    const newIndex = (currentIndex + 1) % images.length;
-    scrollToIndex(newIndex);
+    gsap.utils
+      .toArray('.floating-card')
+      .forEach((card: any, i) => {
+
+        gsap.from(card, {
+
+          opacity: 0,
+          y: 120,
+          scale: 0.9,
+          rotateY: 10,
+
+          duration: 1.2,
+
+          ease: 'power4.out',
+
+          delay: i * 0.08,
+
+          scrollTrigger: {
+
+            trigger: card,
+
+            start: 'top 90%',
+
+            toggleActions:
+              'play none none reset',
+          },
+        });
+
+        // FLOAT EFFECT
+
+        gsap.to(card, {
+
+          y: -15,
+
+          duration:
+            2 + Math.random() * 2,
+
+          repeat: -1,
+
+          yoyo: true,
+
+          ease: 'sine.inOut',
+        });
+      });
+
+    // =========================
+    // CLEANUP
+    // =========================
+
+    return () => {
+
+      stopAutoScroll();
+
+      container.removeEventListener(
+        'mouseenter',
+        handleMouseEnter
+      );
+
+      container.removeEventListener(
+        'mouseleave',
+        handleMouseLeave
+      );
+
+      ScrollTrigger
+        .getAll()
+        .forEach((trigger) =>
+          trigger.kill()
+        );
+
+      splitTitle.revert();
+
+      splitText.revert();
+    };
+
+  }, []);
+
+  // =========================================
+  // SCROLL BOTÕES
+  // =========================================
+
+  const scroll = (
+    direction: 'left' | 'right'
+  ) => {
+
+    const container =
+      carouselRef.current;
+
+    if (!container) return;
+
+    const amount =
+      direction === 'left'
+        ? -450
+        : 450;
+
+    container.scrollBy({
+
+      left: amount,
+
+      behavior: 'smooth',
+    });
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-muted/30 to-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full mb-4">
-            <span className="text-sm">Galeria de Imagens</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl mb-4">Veja Nossa Cidade Se Transformando</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Registros fotográficos de cada etapa das obras e projetos em andamento
-          </p>
-        </div>
 
-        <div className="relative mb-8">
-          <button
-            onClick={handlePrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg hover:bg-accent flex items-center justify-center transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+    <section
+      className="
+        relative
+        py-28
+        overflow-hidden
+        bg-[#020817]
+      "
+    >
 
-          <button
-            onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg hover:bg-accent flex items-center justify-center transition-colors"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+      {/* BG */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.18),transparent_45%)]
+        "
+      />
+
+      <div
+        className="
+          absolute
+          top-[-200px]
+          left-[-200px]
+          w-[500px]
+          h-[500px]
+          rounded-full
+          bg-cyan-500/10
+          blur-[120px]
+        "
+      />
+
+      <div
+        className="
+          relative
+          z-10
+          max-w-[1800px]
+          mx-auto
+        "
+      >
+
+        {/* HEADER */}
+
+        <div className="text-center mb-20 px-4">
 
           <div
-            ref={scrollRef}
-            className="flex overflow-x-auto gap-4 snap-x snap-mandatory scroll-smooth hide-scrollbar"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            ref={badgeRef}
+            className="
+              inline-flex
+              items-center
+              gap-2
+              px-5
+              py-2
+              rounded-full
+              bg-cyan-500/10
+              border
+              border-cyan-400/20
+              text-cyan-300
+              mb-6
+              backdrop-blur-xl
+            "
           >
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start"
-              >
-                <div
-                  className="relative h-64 rounded-xl overflow-hidden cursor-pointer group"
-                  onClick={() => setSelectedImage(index)}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
-                        <ZoomIn className="w-6 h-6 text-primary" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <h4 className="mb-1 text-white">{image.title}</h4>
-                    <p className="text-sm text-white/80">{image.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="flex justify-center gap-2 mb-8">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === currentIndex ? 'bg-primary w-8' : 'bg-muted-foreground/30'
-              }`}
+            <div
+              className="
+                w-2
+                h-2
+                rounded-full
+                bg-cyan-400
+                animate-pulse
+              "
             />
-          ))}
+
+            <span
+              className="
+                uppercase
+                tracking-[0.25em]
+                text-sm
+              "
+            >
+              Rondônia em Destaque
+            </span>
+
+          </div>
+
+          <h2
+            ref={titleRef}
+            className="
+              text-4xl
+              sm:text-5xl
+              lg:text-7xl
+              font-black
+              text-white
+              mb-6
+              leading-[1]
+            "
+          >
+            Grandes ações que estão
+            transformando Rondônia
+          </h2>
+
+          <p
+            ref={textRef}
+            className="
+              max-w-3xl
+              mx-auto
+              text-white/70
+              text-lg
+              leading-relaxed
+            "
+          >
+            Conheça projetos, ações e investimentos
+            que estão impactando diretamente a vida
+            da população.
+          </p>
+
         </div>
 
-        <div className="text-center">
-          <button className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-lg">
-            Ver Galeria Completa
-          </button>
+        {/* BOTÕES */}
+
+        <div
+          className="
+            absolute
+            right-8
+            top-[200px]
+            z-30
+            flex
+            gap-4
+          "
+        >
+
         </div>
+
+        {/* CAROUSEL */}
+
+        <div
+          ref={carouselRef}
+          className="
+            flex
+            gap-8
+            overflow-x-auto
+            px-6
+            pb-10
+            hide-scrollbar
+            scroll-smooth
+          "
+        >
+
+          {[...cards, ...cards].map((card, index) => (
+
+            <div
+              key={index}
+
+              className="
+                floating-card
+                group
+                relative
+                min-w-[390px]
+                max-w-[390px]
+                rounded-[36px]
+                overflow-hidden
+                bg-white/[0.04]
+                border
+                border-white/10
+                backdrop-blur-2xl
+                transition-all
+                duration-700
+                hover:-translate-y-5
+                hover:scale-[1.02]
+                hover:border-cyan-400/30
+                hover:shadow-[0_35px_120px_rgba(6,182,212,0.25)]
+              "
+            >
+
+              {/* LIGHT */}
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  opacity-0
+                  group-hover:opacity-100
+                  transition-opacity
+                  duration-700
+                  bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.25),transparent_60%)]
+                  pointer-events-none
+                "
+              />
+
+              {/* IMAGE */}
+
+              <div className="relative h-[340px] overflow-hidden">
+
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="
+                    w-full
+                    h-full
+                    object-cover
+                    transition-transform
+                    duration-1000
+                    group-hover:scale-110
+                  "
+                />
+
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-[#020817]
+                    via-black/20
+                    to-transparent
+                  "
+                />
+
+                {/* BADGE */}
+
+                <div
+                  className="
+                    absolute
+                    top-5
+                    left-5
+                    px-4
+                    py-2
+                    rounded-full
+                    bg-white/10
+                    border
+                    border-white/10
+                    backdrop-blur-xl
+                    text-white
+                    text-xs
+                    uppercase
+                    tracking-[0.15em]
+                  "
+                >
+                  {card.badge}
+                </div>
+
+              </div>
+
+              {/* CONTENT */}
+
+              <div className="p-8">
+
+                <p
+                  className="
+                    text-cyan-300
+                    uppercase
+                    tracking-[0.25em]
+                    text-sm
+                    mb-4
+                  "
+                >
+                  {card.category}
+                </p>
+
+                <h3
+                  className="
+                    text-2xl
+                    font-black
+                    text-white
+                    leading-tight
+                    mb-4
+                  "
+                >
+                  {card.title}
+                </h3>
+
+                <p
+                  className="
+                    text-white/70
+                    leading-relaxed
+                    mb-7
+                  "
+                >
+                  {card.text}
+                </p>
+
+                <a
+                  href={card.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) =>
+                    e.stopPropagation()
+                  }
+                  className="
+                    inline-flex
+                    items-center
+                    gap-2
+                    text-cyan-300
+                    font-semibold
+                    group-hover:gap-4
+                    transition-all
+                  "
+                >
+
+                  <span>Ver mais</span>
+
+                  <ArrowRight className="w-5 h-5" />
+
+                </a>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
       </div>
 
-      {selectedImage !== null && (
+      {/* MODAL */}
+
+      {selectedCard !== null && (
+
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          className="
+            fixed
+            inset-0
+            z-50
+            bg-black/90
+            backdrop-blur-md
+            flex
+            items-center
+            justify-center
+            p-4
+          "
+          onClick={() =>
+            setSelectedCard(null)
+          }
         >
-          <button
-            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-            onClick={() => setSelectedImage(null)}
-          >
-            <X className="w-6 h-6 text-white" />
-          </button>
 
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedImage((prev) => (prev! > 0 ? prev! - 1 : images.length - 1));
-            }}
+            onClick={() =>
+              setSelectedCard(null)
+            }
+            className="
+              absolute
+              top-6
+              right-6
+              w-14
+              h-14
+              rounded-full
+              bg-white/10
+              hover:bg-white/20
+              flex
+              items-center
+              justify-center
+            "
           >
-            <ChevronLeft className="w-6 h-6 text-white" />
+
+            <X className="w-7 h-7 text-white" />
+
           </button>
 
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedImage((prev) => (prev! < images.length - 1 ? prev! + 1 : 0));
-            }}
-          >
-            <ChevronRight className="w-6 h-6 text-white" />
-          </button>
-
-          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={images[selectedImage].url}
-              alt={images[selectedImage].title}
-              className="w-full h-auto rounded-lg shadow-2xl"
-            />
-            <div className="mt-4 text-center text-white">
-              <h3 className="text-2xl mb-2">{images[selectedImage].title}</h3>
-              <p className="text-white/80">{images[selectedImage].description}</p>
-            </div>
-          </div>
         </div>
+
       )}
 
       <style>{`
+
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
+
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
       `}</style>
+
     </section>
   );
 }

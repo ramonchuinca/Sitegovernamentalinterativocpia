@@ -135,19 +135,38 @@ export default function App() {
 
       <FeaturedProjects />
 
-      <SplitBanner
-        image="https://images.unsplash.com/photo-1771765780945-c788a6ce4b33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
-        title="Educação: O Futuro Começa Agora"
-        description="Nossas escolas estão sendo transformadas com tecnologia de ponta, espaços modernos e infraestrutura que inspira o aprendizado e prepara nossos jovens para o futuro."
-        achievements={[
-          '30 escolas modernizadas com laboratórios de informática e ciências',
-          '1.500 novos alunos atendidos no Centro Educacional Integrado',
-          'Tecnologia VR e equipamentos digitais em todas as unidades',
-          'Programa de capacitação contínua para 500 professores',
-          'Merenda escolar de qualidade para 12 mil estudantes'
-        ]}
-        imagePosition="right"
-      />
+   <SplitBanner
+  image="/src/app/components/figma/02_vista-frontal-mulher-derramando-massa.jpg"
+
+  title="PROGRAMA VENCER"
+
+  description="
+    Capacitação que muda vidas através da qualificação
+    profissional e apoio para pessoas em vulnerabilidade social.
+  "
+
+  achievements={[
+    'Capacitação de 10 mil pessoas por ano',
+    'Auxílio Financeiro',
+    'Entrega de kit empreendedor',
+    'Capacitação profissional para pessoas em vulnerabilidade social',
+  ]}
+
+  rightTitle="GERAÇÃO EMPREGO"
+
+  rightDescription="
+    A maior plataforma de empregos de Rondônia,
+    conectando trabalhadores e empresas em todos
+    os municípios do estado.
+  "
+
+  rightAchievements={[
+    'Plataforma que conecta trabalhadores e empresas',
+    'Mais de 151,5 mil currículos enviados',
+    'Mais de 6,3 mil empresas parceiras',
+    'Atendimento nos 52 municípios de Rondônia',
+  ]}
+/>
 
       <InteractiveGallery />
 

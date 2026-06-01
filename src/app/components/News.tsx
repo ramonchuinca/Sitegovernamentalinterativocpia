@@ -35,91 +35,43 @@ export function News() {
       id: 2,
 
       desktop:
-        '/src/app/components/figma/hospital-horizontal.jpg',
+        '/src/app/components/figma/trabalhador-2.jpg',
 
       mobile:
-        '/src/app/components/figma/hospital-vertical.jpg',
+        '/src/app/components/figma/trabalhador-1.jpg',
     },
 
     {
       id: 3,
 
       desktop:
-        '/src/app/components/figma/avenida-horizontal.jpg',
+        '/src/app/components/figma/trabalhadora-4.jpg',
 
       mobile:
-        '/src/app/components/figma/avenida-vertical.jpg',
+        '/src/app/components/figma/trabalhadora-3.jpg',
     },
 
     {
       id: 4,
 
       desktop:
-        '/src/app/components/figma/escola-horizontal.jpg',
+        '/src/app/components/figma/civil-2.jpg',
 
       mobile:
-        '/src/app/components/figma/escola-vertical.jpg',
+        '/src/app/components/figma/civil-1.jpg',
     },
 
     {
       id: 5,
 
       desktop:
-        '/src/app/components/figma/parque-horizontal.jpg',
+        '/src/app/components/figma/policial-2.png',
 
       mobile:
-        '/src/app/components/figma/parque-vertical.jpg',
+        '/src/app/components/figma/policial-1.jpg',
     },
 
-    {
-      id: 6,
 
-      desktop:
-        '/src/app/components/figma/seguranca-horizontal.jpg',
-
-      mobile:
-        '/src/app/components/figma/seguranca-vertical.jpg',
-    },
-
-    {
-      id: 7,
-
-      desktop:
-        '/src/app/components/figma/emprego-horizontal.jpg',
-
-      mobile:
-        '/src/app/components/figma/emprego-vertical.jpg',
-    },
-
-    {
-      id: 8,
-
-      desktop:
-        '/src/app/components/figma/infra-horizontal.jpg',
-
-      mobile:
-        '/src/app/components/figma/infra-vertical.jpg',
-    },
-
-    {
-      id: 9,
-
-      desktop:
-        '/src/app/components/figma/cafe-horizontal.jpg',
-
-      mobile:
-        '/src/app/components/figma/cafe-vertical.jpg',
-    },
-
-    {
-      id: 10,
-
-      desktop:
-        '/src/app/components/figma/ambiental-horizontal.jpg',
-
-      mobile:
-        '/src/app/components/figma/ambiental-vertical.jpg',
-    },
   ];
 
   // AUTO PLAY
@@ -246,194 +198,176 @@ export function News() {
 
         <div
           className="
-            relative
-            w-full
-            h-[500px]
-            sm:h-[650px]
-            lg:h-[780px]
-            rounded-[40px]
-            overflow-hidden
-            border
-            border-white/10
-            shadow-[0_40px_120px_rgba(0,0,0,0.45)]
-          "
-        >
-
-          {/* IMAGENS */}
-
-          {newsImages.map(
-            (image, index) => (
-
-              <div
-                key={image.id}
-                className={`
-                  absolute
-                  inset-0
-                  transition-all
-                  duration-[1800ms]
-                  ease-in-out
-                  ${
-                    current === index
-                      ? 'opacity-100 scale-100 z-20'
-                      : 'opacity-0 scale-110 z-10'
-                  }
-                `}
-              >
-
-                <picture
-                  className="
-                    block
-                    w-full
-                    h-full
-                  "
-                >
-
-                  <source
-                    media="(max-width: 768px)"
-                    srcSet={image.mobile}
-                  />
-
-                  <source
-                    media="(min-width: 769px)"
-                    srcSet={image.desktop}
-                  />
-
-                 <img
-  src={image.desktop}
-  alt="Notícia"
-  className="
+    relative
     w-full
-    h-full
-    object-contain
+    h-[420px]
+    sm:h-[550px]
+    lg:h-[700px]
+    rounded-[40px]
+    overflow-hidden
+    border
+    border-white/10
+    shadow-[0_40px_120px_rgba(0,0,0,0.45)]
     bg-[#020817]
   "
-/>
+        >
+          {/* IMAGENS */}
 
-                </picture>
+          {newsImages.map((image, index) => (
+            <div
+              key={image.id}
+              className={`
+        absolute
+        inset-0
+        transition-opacity
+        duration-[1200ms]
+        ease-in-out
+        ${current === index
+                  ? 'opacity-100 z-20'
+                  : 'opacity-0 z-10'
+                }
+      `}
+            >
+              {/* DESKTOP */}
 
-                {/* OVERLAY */}
+              <img
+                src={image.desktop}
+                alt="Notícia"
+                className="
+          hidden
+          md:block
+          w-full
+          h-full
+          object-contain
+        "
+              />
 
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    bg-gradient-to-t
-                    from-black/80
-                    via-black/20
-                    to-transparent
-                  "
-                />
+              {/* MOBILE */}
 
-              </div>
+              <img
+                src={image.mobile}
+                alt="Notícia"
+                className="
+          block
+          md:hidden
+          w-full
+          h-full
+          object-contain
+        "
+              />
 
-            )
-          )}
+              {/* OVERLAY */}
 
-          {/* BOTÕES */}
+              <div
+                className="
+          absolute
+          inset-0
+          bg-gradient-to-t
+          from-black/40
+          via-transparent
+          to-transparent
+        "
+              />
+            </div>
+          ))}
+
+          {/* BOTÃO ESQUERDO */}
 
           <button
             onClick={prevSlide}
             className="
-              absolute
-              left-6
-              top-1/2
-              -translate-y-1/2
-              z-30
-              w-16
-              h-16
-              rounded-full
-              bg-black/30
-              backdrop-blur-xl
-              border
-              border-white/10
-              flex
-              items-center
-              justify-center
-              text-white
-              hover:bg-cyan-500/20
-              hover:scale-110
-              transition-all
-              duration-300
-            "
+      absolute
+      left-4
+      sm:left-6
+      top-1/2
+      -translate-y-1/2
+      z-30
+      w-12
+      h-12
+      sm:w-16
+      sm:h-16
+      rounded-full
+      bg-black/30
+      backdrop-blur-xl
+      border
+      border-white/10
+      flex
+      items-center
+      justify-center
+      text-white
+      hover:bg-cyan-500/20
+      transition-all
+    "
           >
-
-            <ChevronLeft className="w-8 h-8" />
-
+            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
           </button>
+
+          {/* BOTÃO DIREITO */}
 
           <button
             onClick={nextSlide}
             className="
-              absolute
-              right-6
-              top-1/2
-              -translate-y-1/2
-              z-30
-              w-16
-              h-16
-              rounded-full
-              bg-black/30
-              backdrop-blur-xl
-              border
-              border-white/10
-              flex
-              items-center
-              justify-center
-              text-white
-              hover:bg-cyan-500/20
-              hover:scale-110
-              transition-all
-              duration-300
-            "
+      absolute
+      right-4
+      sm:right-6
+      top-1/2
+      -translate-y-1/2
+      z-30
+      w-12
+      h-12
+      sm:w-16
+      sm:h-16
+      rounded-full
+      bg-black/30
+      backdrop-blur-xl
+      border
+      border-white/10
+      flex
+      items-center
+      justify-center
+      text-white
+      hover:bg-cyan-500/20
+      transition-all
+    "
           >
-
-            <ChevronRight className="w-8 h-8" />
-
+            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
           </button>
 
           {/* INDICADORES */}
 
           <div
             className="
-              absolute
-              bottom-8
-              left-1/2
-              -translate-x-1/2
-              z-30
-              flex
-              items-center
-              gap-3
-            "
+      absolute
+      bottom-5
+      left-1/2
+      -translate-x-1/2
+      z-30
+      flex
+      items-center
+      gap-3
+    "
           >
-
-            {newsImages.map(
-              (_, index) => (
-
-                <button
-                  key={index}
-                  onClick={() =>
-                    setCurrent(index)
+            {newsImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`
+          rounded-full
+          transition-all
+          duration-300
+          ${current === index
+                    ? 'w-12 h-2 bg-cyan-400'
+                    : 'w-2.5 h-2.5 bg-white/40 hover:bg-white'
                   }
-                  className={`
-                    transition-all
-                    duration-300
-                    rounded-full
-                    ${
-                      current === index
-                        ? 'w-14 h-3 bg-cyan-400'
-                        : 'w-3 h-3 bg-white/40 hover:bg-white'
-                    }
-                  `}
-                />
-
-              )
-            )}
-
+        `}
+              />
+            ))}
           </div>
-
         </div>
 
       </div>
+
+
 
     </section>
   );

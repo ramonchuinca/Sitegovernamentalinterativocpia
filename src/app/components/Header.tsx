@@ -1,62 +1,76 @@
-import { Menu, Search, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-border sticky top-0 z-50">
+    <header
+  className="
+    fixed
+    top-0
+    left-0
+    w-full
+    z-50
+    bg-transparent
+  "
+>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white">🏛️</span>
-            </div>
-            <div>
-              <h1 className="text-base leading-tight">Portal de Obras</h1>
-              <p className="text-xs text-muted-foreground">Governo Municipal</p>
-            </div>
+
+        <div className="flex justify-between items-center py-3">
+
+          {/* Logo Esquerda */}
+          <div className="flex items-center">
+            <img
+              src="/src/assets/LOGO-GOV-RO-PT-HORIZONTAL_12.png"
+              alt="Logo Governo"
+              className="h-20 w-auto"
+            />
           </div>
 
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#obras" className="text-sm text-foreground hover:text-primary transition-colors">
-              Obras
-            </a>
-            <a href="#andamento" className="text-sm text-foreground hover:text-primary transition-colors">
-              Em Andamento
-            </a>
-            <a href="#concluidas" className="text-sm text-foreground hover:text-primary transition-colors">
-              Concluídas
-            </a>
-            <a href="#transparencia" className="text-sm text-foreground hover:text-primary transition-colors">
-              Transparência
-            </a>
-          </nav>
+          {/* Logo Direita */}
+          <div className="flex items-center">
+            <img
+              src="/src/assets/www.png"
+              alt="Portal"
+              className="h-16 w-auto"
+            />
+          </div>
 
+          {/* Botão Mobile */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-accent"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-800 text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
+
         </div>
 
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border">
-            <a href="#obras" className="block py-2 text-sm text-foreground hover:text-primary transition-colors">
+          <nav className="md:hidden py-4 border-t border-gray-700">
+            <a href="#obras" className="block py-2 text-white">
               Obras
             </a>
-            <a href="#andamento" className="block py-2 text-sm text-foreground hover:text-primary transition-colors">
+
+            <a href="#andamento" className="block py-2 text-white">
               Em Andamento
             </a>
-            <a href="#concluidas" className="block py-2 text-sm text-foreground hover:text-primary transition-colors">
+
+            <a href="#concluidas" className="block py-2 text-white">
               Concluídas
             </a>
-            <a href="#transparencia" className="block py-2 text-sm text-foreground hover:text-primary transition-colors">
+
+            <a href="#transparencia" className="block py-2 text-white">
               Transparência
             </a>
           </nav>
         )}
+
       </div>
     </header>
   );

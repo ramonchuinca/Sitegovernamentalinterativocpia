@@ -34,7 +34,7 @@ export function Hero() {
               {/* MOBILE */}
               <source
                 media="(max-width: 600px)"
-                srcSet="/src/app/components/figma/obras-vert.webp"
+                srcSet="/src/app/components/figma/banner-50x400.png"
               />
 
               {/* DESKTOP */}
@@ -44,18 +44,19 @@ export function Hero() {
               />
 
               {/* DEFAULT */}
-              <img
-                src="/src/app/components/figma/3 bi copy.webp"
-                alt="obra 1"
-                className="
-                  absolute
-                  inset-0
-                  w-full
-                  h-full
-                  object-cover
-                  object-center
-                "
-              />
+             <img
+  src="/src/app/components/figma/3 bi copy.webp"
+  alt="obra 1"
+  className="
+    absolute
+    inset-0
+    w-full
+    h-full
+    object-contain
+    md:object-cover
+    object-center
+  "
+/>
 
             </picture>
 
@@ -124,7 +125,7 @@ export function Hero() {
               {/* MOBILE */}
               <source
                 media="(max-width: 600px)"
-                srcSet="/src/app/components/figma/mulhher-vertical-mobile.webp"
+                srcSet="/src/app/components/figma/Mulher_500x400_02.png"
               />
 
               {/* DESKTOP */}
@@ -134,18 +135,19 @@ export function Hero() {
               />
 
               {/* DEFAULT */}
-              <img
-                src="/src/app/components/figma/base mulher copy.webp"
-                alt="obra 2"
-                className="
-                  absolute
-                  inset-0
-                  w-full
-                  h-full
-                  object-cover
-                  object-center
-                "
-              />
+             <img
+  src="/src/app/components/figma/3 bi copy.webp"
+  alt="obra 1"
+  className="
+    absolute
+    inset-0
+    w-full
+    h-full
+   
+    md:object-cover
+    object-center
+  "
+/>
 
             </picture>
 

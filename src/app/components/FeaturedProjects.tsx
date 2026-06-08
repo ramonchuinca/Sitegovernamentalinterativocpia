@@ -22,55 +22,55 @@ export function FeaturedProjects() {
       ],
     },
 
-   {
-  title: '2º Melhor Índice de Combate à Criminalidade',
-  location: 'Rondônia',
-  image: '/src/app/components/figma/policia-formando.jpg',
-  progress: 92,
-  investment: 'Uso de Inteligência Analítica',
-  impact: 'Rondônia entre os estados com melhores resultados no combate à criminalidade.',
-  status: 'Operações estratégicas em andamento',
+    {
+      title: '2º Melhor Índice de Combate à Criminalidade',
+      location: 'Rondônia',
+      image: '/src/app/components/figma/policia-formando.jpg',
+      progress: 92,
+      investment: 'Uso de Inteligência Analítica',
+      impact: 'Rondônia entre os estados com melhores resultados no combate à criminalidade.',
+      status: 'Operações estratégicas em andamento',
 
-  topics: [
-    'Uso de Inteligência Analítica',
-    'Serviços de Investigação e Captura',
-    'Procedimentos Investigativos',
-    'Ações integradas de segurança pública',
-  ],
-},
+      topics: [
+        'Uso de Inteligência Analítica',
+        'Serviços de Investigação e Captura',
+        'Procedimentos Investigativos',
+        'Ações integradas de segurança pública',
+      ],
+    },
 
     {
-  title: 'Ações que Geram Trabalho',
-  location: 'Rondônia',
-  image: '/src/app/components/figma/trabalhador trabalho-1.webp',
-  progress: 94,
-  investment: '+16.800 novas empresas abertas',
-  impact: '2° Estado com menor desemprego do país.',
-  status: 'Mais oportunidades e geração de renda',
+      title: 'Ações que Geram Trabalho',
+      location: 'Rondônia',
+      image: '/src/app/components/figma/trabalhador trabalho-1.webp',
+      progress: 94,
+      investment: '+16.800 novas empresas abertas',
+      impact: '2° Estado com menor desemprego do país.',
+      status: 'Mais oportunidades e geração de renda',
 
-  topics: [
-    'Plataforma Geração Emprego',
-    'Programa Vencer',
-    '+16.800 novas empresas abertas',
-    '+3,3 mil vagas de emprego ofertadas',
-  ],
-},
-     {
-  title: '2° Maior Produtor de Café Robusta',
-  location: 'Rondônia',
-  image: '/src/app/components/figma/IMAGEM DE GRÃO DE CAFE.jpg',
-  progress: 88,
-  investment: 'Incentivos pelo programa Plante Mais',
-  impact: 'Rondônia se destaca nacionalmente pela qualidade e produção do café robusta.',
-  status: 'Fortalecimento da produção cafeeira',
+      topics: [
+        'Plataforma Geração Emprego',
+        'Programa Vencer',
+        '+16.800 novas empresas abertas',
+        '+3,3 mil vagas de emprego ofertadas',
+      ],
+    },
+    {
+      title: '2° Maior Produtor de Café Robusta',
+      location: 'Rondônia',
+      image: '/src/app/components/figma/IMAGEM DE GRÃO DE CAFE.jpg',
+      progress: 88,
+      investment: 'Incentivos pelo programa Plante Mais',
+      impact: 'Rondônia se destaca nacionalmente pela qualidade e produção do café robusta.',
+      status: 'Fortalecimento da produção cafeeira',
 
-  topics: [
-    'Incentivos pelo programa Plante Mais',
-    'Incentivos pelo programa Mais Calcário',
-    'Fomento ao melhoramento da bebida com o ConCafé',
-    'Valorização dos produtores rurais',
-  ],
-},
+      topics: [
+        'Incentivos pelo programa Plante Mais',
+        'Incentivos pelo programa Mais Calcário',
+        'Fomento ao melhoramento da bebida com o ConCafé',
+        'Valorização dos produtores rurais',
+      ],
+    },
   ];
 
   return (

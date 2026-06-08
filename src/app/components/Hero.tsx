@@ -44,10 +44,10 @@ export function Hero() {
               />
 
               {/* DEFAULT */}
-             <img
-  src="/src/app/components/figma/3 bi copy.webp"
-  alt="obra 1"
-  className="
+              <img
+                src="/src/app/components/figma/3 bi copy.webp"
+                alt="obra 1"
+                className="
     absolute
     inset-0
     w-full
@@ -56,7 +56,7 @@ export function Hero() {
     md:object-cover
     object-center
   "
-/>
+              />
 
             </picture>
 
@@ -135,10 +135,10 @@ export function Hero() {
               />
 
               {/* DEFAULT */}
-             <img
-  src="/src/app/components/figma/3 bi copy.webp"
-  alt="obra 1"
-  className="
+              <img
+                src="/src/app/components/figma/3 bi copy.webp"
+                alt="obra 1"
+                className="
     absolute
     inset-0
     w-full
@@ -147,7 +147,7 @@ export function Hero() {
     md:object-cover
     object-center
   "
-/>
+              />
 
             </picture>
 

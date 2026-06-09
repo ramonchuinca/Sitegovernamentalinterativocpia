@@ -1,4 +1,20 @@
 import { MapPin, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import type { Variants } from "framer-motion";
+
+const imageVariants: Variants = {
+  hidden: {
+    scale: 1.1,
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
 import { ImageWithFallback } from './ImageWithFallback';
 
 export function FeaturedProjects() {
@@ -72,7 +88,42 @@ export function FeaturedProjects() {
       ],
     },
   ];
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
 
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 60,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  }
+
+  const imageVariants: Variants = {
+  hidden: {
+    scale: 1.1,
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
   return (
 
     <section className="py-20 bg-white overflow-hidden">
@@ -81,7 +132,13 @@ export function FeaturedProjects() {
 
         {/* HEADER */}
 
-        <div className="text-center mb-20">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
 
           <div
             className="
@@ -125,99 +182,110 @@ export function FeaturedProjects() {
             transformando vidas em Rondônia.
           </p>
 
-        </div>
+        </motion.div>
 
         {/* PROJECTS */}
 
-        <div className="space-y-14">
+        <motion.div
+          className="space-y-14"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
 
           {projects.map((project, index) => (
 
-            <div
+            <motion.div
               key={project.title}
+              variants={cardVariants}
+              whileHover={{
+                y: -8,
+              }}
               className="
-                group
-                relative
-                overflow-hidden
-                rounded-[32px]
-                border
-                border-zinc-200
-                shadow-[0_15px_50px_rgba(0,0,0,0.08)]
-                bg-white
-              "
+    group
+    relative
+    overflow-hidden
+    rounded-[32px]
+    border
+    border-zinc-200
+    shadow-[0_15px_50px_rgba(0,0,0,0.08)]
+    bg-white
+  "
             >
-
               <div className="grid lg:grid-cols-2">
 
                 {/* IMAGE */}
 
                 <div
                   className={`
-                    relative
-                    min-h-[350px]
-                    lg:min-h-[620px]
-                    overflow-hidden
-                    ${index % 2 === 0
+        relative
+        min-h-[350px]
+        lg:min-h-[620px]
+        overflow-hidden
+        ${index % 2 === 0
                       ? 'lg:order-1'
                       : 'lg:order-2'}
-                  `}
+      `}
                 >
-
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
-                    className="
-                      w-full
-                      h-full
-                      object-cover
-                      group-hover:scale-105
-                      transition-transform
-                      duration-700
-                    "
-                  />
+                  <motion.div
+                    variants={imageVariants}
+                    className="w-full h-full"
+                  >
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.title}
+                      className="
+            w-full
+            h-full
+            object-cover
+            group-hover:scale-110
+            transition-transform
+            duration-1000
+          "
+                    />
+                  </motion.div>
 
                   <div
                     className="
-                      absolute
-                      inset-0
-                      bg-gradient-to-t
-                      from-black/70
-                      via-black/10
-                      to-transparent
-                    "
+          absolute
+          inset-0
+          bg-gradient-to-t
+          from-black/70
+          via-black/10
+          to-transparent
+        "
                   />
 
                   {/* STATUS */}
 
                   <div
                     className="
-                      absolute
-                      top-6
-                      left-6
-                    "
+          absolute
+          top-6
+          left-6
+        "
                   >
-
                     <div
                       className="
-                        px-4
-                        py-2
-                        rounded-full
-                        bg-white/15
-                        backdrop-blur-xl
-                        border
-                        border-white/10
-                        text-white
-                        text-sm
-                        font-medium
-                      "
+            px-4
+            py-2
+            rounded-full
+            bg-white/15
+            backdrop-blur-xl
+            border
+            border-white/10
+            text-white
+            text-sm
+            font-medium
+          "
                     >
                       {project.status}
                     </div>
-
                   </div>
-
                 </div>
 
+                {/* CONTENT */}
                 {/* CONTENT */}
 
                 <div
@@ -258,19 +326,22 @@ export function FeaturedProjects() {
 
                   {/* TITLE */}
 
-                  <h3
+                  <motion.h3
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
                     className="
-                      text-4xl
-                      lg:text-5xl
-                      font-black
-                      leading-tight
-                      tracking-tight
-                      mb-6
-                    "
+    text-4xl
+    lg:text-5xl
+    font-black
+    leading-tight
+    tracking-tight
+    mb-6
+  "
                   >
                     {project.title}
-                  </h3>
-
+                  </motion.h3>
                   {/* DESCRIPTION */}
 
                   <p
@@ -291,41 +362,46 @@ export function FeaturedProjects() {
 
                     {project.topics?.map((topic, topicIndex) => (
 
-                      <div
+                      <motion.div
                         key={topicIndex}
+                        initial={{ opacity: 0, x: -15 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: topicIndex * 0.1,
+                          duration: 0.4,
+                        }}
                         className="
-                          flex
-                          items-start
-                          gap-4
-                        "
+      flex
+      items-start
+      gap-4
+    "
                       >
 
                         <div
                           className="
-                            w-3
-                            h-3
-                            rounded-full
-                            bg-primary
-                            mt-2
-                            flex-shrink-0
-                          "
+        w-3
+        h-3
+        rounded-full
+        bg-primary
+        mt-2
+        flex-shrink-0
+      "
                         />
 
                         <div>
-
                           <p
                             className="
-                              text-lg
-                              leading-relaxed
-                              font-medium
-                            "
+          text-lg
+          leading-relaxed
+          font-medium
+        "
                           >
                             {topic}
                           </p>
-
                         </div>
 
-                      </div>
+                      </motion.div>
 
                     ))}
 
@@ -413,11 +489,11 @@ export function FeaturedProjects() {
 
               </div>
 
-            </div>
+             </motion.div>
 
           ))}
 
-        </div>
+        </motion.div>
 
       </div>
 

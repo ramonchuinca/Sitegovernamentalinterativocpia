@@ -199,9 +199,13 @@ export function FeaturedProjects() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              whileHover={{
-                y: -8,
-              }}
+            whileHover={{
+  y: -12,
+  scale: 1.01,
+}}
+transition={{
+  duration: 0.3,
+}}
               className="
     group
     relative
@@ -235,14 +239,14 @@ export function FeaturedProjects() {
                     <ImageWithFallback
                       src={project.image}
                       alt={project.title}
-                      className="
-            w-full
-            h-full
-            object-cover
-            group-hover:scale-110
-            transition-transform
-            duration-1000
-          "
+           className="
+  w-full
+  h-full
+  object-cover
+  transition-all
+  duration-1000
+  group-hover:scale-105
+"
                     />
                   </motion.div>
 

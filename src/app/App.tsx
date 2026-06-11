@@ -172,22 +172,22 @@ export default function App() {
 
       <News />
 
-      <AudioPlayer />
+      {/* <AudioPlayer /> */}
 
-      <BeforeAfter />
+      {/* <BeforeAfter /> */}
 
-      <ParallaxBanner
+      {/* <ParallaxBanner
         image="https://images.unsplash.com/photo-1708358131361-93680cf7b4cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
         highlight="Mobilidade Urbana"
         title="Caminhos Mais Rápidos, Vida Melhor"
         description="A duplicação da Avenida Principal e novos corredores de ônibus vão reduzir o tempo de deslocamento em até 40%, trazendo mais qualidade de vida para quem trabalha e estuda."
-      />
+      /> */}
 
-      <Timeline />
+      {/* <Timeline /> */}
 
       <AnimatedStats />
 
-      <ImpactBanner
+      {/* <ImpactBanner
         image="https://images.unsplash.com/photo-1639165426340-7fd19487a7c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
         title="Espaços de Lazer Para Toda Família"
         subtitle="Parques revitalizados, áreas verdes preservadas e equipamentos públicos que promovem saúde, convivência e bem-estar"
@@ -195,7 +195,7 @@ export default function App() {
         author="Maria Silva, moradora da Zona Norte"
         align="right"
         overlay="dark"
-      />
+      /> */}
 
       <SocialFeed />
       <CallToAction />

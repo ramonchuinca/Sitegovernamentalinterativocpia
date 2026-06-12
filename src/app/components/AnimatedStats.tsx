@@ -29,31 +29,31 @@ export function AnimatedStats() {
   const stats = [
   {
   image: coffee,
-  target: 12,
+  target: 194,
   suffix: 'M',
-  label: 'Obras no Hospital de Retaguarda',
+  label: 'Mil toneladas de produçãos de café',
   color: 'from-green-500 to-emerald-500'
 },
 {
   image: forest,
-  target: 30,
-  suffix: 'M',
-  label: 'Obras no Aeroporto de Cacoal',
+  target: 90,
+  suffix: '%',
+  label: 'De redução das queimadas',
   color: 'from-[#F9EC08] to-yellow-400'
 },
 {
   image: lupa,
-  target: 310,
-  suffix: 'M',
-  label: 'Obras na Estrada RO-370',
+  target: 2.3,
+  suffix: '%',
+  label: 'Entre os menores índices de desemprego do país',
   color: 'from-purple-500 to-indigo-500',
   format: true
 },
 {
   image: shield,
-  target: 8,
-  suffix: 'M',
-  label: 'Obra na Ponte RO-459',
+  target: 92,
+  suffix: '%',
+  label: 'Homicídios esclarecidos',
   color: 'from-orange-500 to-red-500'
 },
 

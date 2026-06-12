@@ -30,7 +30,7 @@ export function SplitBanner({
     <section
       className="
         py-24
-        bg-white
+        bg-amber-200
         overflow-hidden
       "
     >

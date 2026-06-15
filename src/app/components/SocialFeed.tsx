@@ -4,16 +4,18 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export function SocialFeed() {
   const [rotation, setRotation] = useState(0);
 
-  const videos = [
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-    "https://www.youtube.com/embed/jYER-UcrtPI",
-  ];
+ const videos = [
+  "https://www.youtube.com/embed/bUfdhAOg-LE",
+  "https://www.youtube.com/embed/pWGVEbBiNWU",
+  "https://www.youtube.com/embed/pCbmNTRv6Hw",
+  "https://www.youtube.com/embed/yiCMOjHIkng",
+  "https://www.youtube.com/embed/ZbuoyRNtuME",
+  "https://www.youtube.com/embed/TxWwXIye_8M",
+  "https://www.youtube.com/embed/TH76IXVsAHk",
+  "https://www.youtube.com/embed/T-UeVhqdPrE",
+  "https://www.youtube.com/embed/6mL2stM9vgM",
+  "https://www.youtube.com/embed/pCbmNTRv6Hw",
+];
 
   const angle = 360 / videos.length;
 

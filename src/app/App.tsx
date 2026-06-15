@@ -198,9 +198,9 @@ export default function App() {
       /> */}
 
       <SocialFeed />
-      <CallToAction />
       <Footer />
       <FloatingCTA />
+      {/* <CallToAction /> */}
     </div>
   );
 }

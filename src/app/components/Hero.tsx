@@ -34,7 +34,7 @@ export function Hero() {
               {/* MOBILE */}
               <source
                 media="(max-width: 600px)"
-                srcSet="/src/app/components/figma/banner-50x400.png"
+                srcSet="/src/app/components/figma/obras-vert.webp"
               />
 
               {/* DESKTOP */}
@@ -48,11 +48,11 @@ export function Hero() {
                 src="/src/app/components/figma/3 bi copy.webp"
                 alt="obra 1"
                 className="
-    absolute
+   absolute
     inset-0
     w-full
     h-full
-    object-contain
+   
     md:object-cover
     object-center
   "

@@ -23,6 +23,20 @@ import { ModernParallaxBanner } from './components/ModernParallaxBanner';
 import { CampaignVideoSection } from './components/CampaignVideoSection';
 
 
+import ReactDOM from 'react-dom/client'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init({
+  duration: 800,
+  once: true,
+  offset: 80,
+})
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <App />
+)
+
 export default function App() {
   return (
     <div className="min-h-screen bg-background">

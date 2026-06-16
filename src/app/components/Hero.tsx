@@ -136,7 +136,7 @@ export function Hero() {
 
               {/* DEFAULT */}
               <img
-                src="/src/app/components/figma/3 bi copy.webp"
+                src="/src/app/components/figma/base mulher copy.webp"
                 alt="obra 1"
                 className="
     absolute

@@ -28,9 +28,9 @@ export function SocialFeed() {
   }, [angle]);
 
   return (
-    <section className="py-20 bg-black overflow-hidden">
+    <section className="py-20  overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center text-white">
+        <div className="text-center text-black">
   <h2 className="text-5xl font-bold">
     Vídeos em Destaque
   </h2>
